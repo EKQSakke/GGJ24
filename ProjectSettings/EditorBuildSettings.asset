@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Sakke_Cutscene_Test1.unity
+    guid: 703c78d46ea2853489127dce51c72df5
+  - enabled: 1
+    path: Assets/Scenes/Sakke_CutsceneManager.unity
+    guid: 08aa2f1e2b8990449a2658b4eac44752
   m_configObjects: {}
