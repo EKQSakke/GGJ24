@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     [SerializeField] private Transform interactorBase;
+    [SerializeField] private Transform interactableHolder;
     [SerializeField] private LayerMask interactableLayers;
     [SerializeField] private float interactorDistance = 3f;
 
