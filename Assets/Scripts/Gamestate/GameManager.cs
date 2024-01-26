@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Game settings")]
     public List<GameRoundSettings> GameRounds = new List<GameRoundSettings>();
+
+    [Header("References")]
+    public List<UsableItemSpawner> ItemSpawners;
     public Image GameClock;
     public Slider StressLevel;
     public TextMeshProUGUI DayTitleText;
@@ -73,6 +77,13 @@ public class GameManager : Singleton<GameManager>
         GameClock.fillAmount = 0;
         DayTitleText.text = "Day " + (currentGameRound + 1);
         SetDayOverUI(false);
+
+        List<UsableItemData> items = GameData.GetAll<UsableItemData>();
+
+        foreach (UsableItemSpawner spawner in ItemSpawners)
+        {
+            spawner.CreateItems(items);
+        }
 
         GameCurrentlyActive = true;
     }
