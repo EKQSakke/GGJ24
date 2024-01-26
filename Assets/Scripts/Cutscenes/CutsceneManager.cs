@@ -1,27 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CutsceneManager : MonoBehaviour
+public class CutsceneManager : Singleton<CutsceneManager>
 {
-    public static CutsceneManager instance;
-
     string lastSceneName;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
+    private void Awake()
     {
-        if (instance == null)
+        if (CreateSingleton(this, SetDontDestroy) == true)
         {
-            instance = this;
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void Update()

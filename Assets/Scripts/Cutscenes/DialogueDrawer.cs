@@ -2,10 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class DialogueDrawer : MonoBehaviour
+public class DialogueDrawer : Singleton<DialogueDrawer>
 {
-    public static DialogueDrawer instance;
-
     [SerializeField]
     TextMeshProUGUI text;
 
@@ -15,21 +13,12 @@ public class DialogueDrawer : MonoBehaviour
     [SerializeField]
     float emptyDelay = 3;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
+    private void Awake()
     {
-        if (instance == null)
+        if (CreateSingleton(this, SetDontDestroy) == true)
         {
-            instance = this;
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     public void ShowText(string text)
