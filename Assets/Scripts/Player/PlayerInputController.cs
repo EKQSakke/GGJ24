@@ -23,7 +23,16 @@ public class PlayerInputController : MonoBehaviour
     void OnLook(InputValue inputValue)
     {
         Vector2 value = inputValue.Get<Vector2>();
-        Debug.Log(value);
         player.Look.RotateLook(value);
+    }
+
+    void OnInteract(InputValue inputValue)
+    {
+        float value = inputValue.Get<float>();
+
+        if (value == 1f)
+            player.Interactor.StartInteraction();
+        else
+            player.Interactor.EndInteraction();
     }
 }
