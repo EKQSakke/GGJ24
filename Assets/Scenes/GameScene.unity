@@ -1209,6 +1209,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7092055413414356399, guid: a84e3e10813181a4c8efe03fc4a11280, type: 3}
+      propertyPath: DefaultDataToUse
+      value: 
+      objectReference: {fileID: 11400000, guid: 340f1b699d36d0941997903744f81e72, type: 2}
     - target: {fileID: 7472354942069331050, guid: a84e3e10813181a4c8efe03fc4a11280, type: 3}
       propertyPath: m_Layer
       value: 20
@@ -1676,6 +1680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
+  badInteractionParticlePrefab: {fileID: 7778863314175787918, guid: bd5bf8ac9209b0c40bfad51dbe54aad3, type: 3}
   NPCDatas: []
   spawnLocation: {x: 0, y: 1.4, z: 2.161}
   distanceToNextNPC: 2
@@ -2150,6 +2155,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7092055413414356399, guid: a84e3e10813181a4c8efe03fc4a11280, type: 3}
+      propertyPath: DefaultDataToUse
+      value: 
+      objectReference: {fileID: 11400000, guid: d94612066f02b584d93a2030b12f5e97, type: 2}
     - target: {fileID: 7472354942069331050, guid: a84e3e10813181a4c8efe03fc4a11280, type: 3}
       propertyPath: m_Layer
       value: 20

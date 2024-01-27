@@ -8,8 +8,8 @@ using UnityEngine.TextCore.Text;
 public class NPCSpawner : MonoBehaviour
 {
     [SerializeField] GameObject interactionParticlePrefab;
-    [SerializeField]
-    List<NPCData> NPCDatas = new List<NPCData>();
+    [SerializeField] GameObject badInteractionParticlePrefab;
+    [SerializeField] List<NPCData> NPCDatas = new List<NPCData>();
 
     List<NPC> NPCs = new List<NPC>();
 
@@ -60,6 +60,27 @@ public class NPCSpawner : MonoBehaviour
         if (NPCs.IsEmpty())
             return;
 
+        
+
+        if (NPCs[0].ItemGivenToMe(itemUsed))
+        {
+            if (interactionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(interactionParticlePrefab, NPCs[0].transform.position - NPCs[0].transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+        else
+        {
+            if (badInteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(badInteractionParticlePrefab, NPCs[0].transform.position - NPCs[0].transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+
+        NPCs.RemoveAt(0);
+
         Debug.Log("im here");
         AdvanceNextNPC();
     }
@@ -72,15 +93,7 @@ public class NPCSpawner : MonoBehaviour
         foreach (var item in NPCs)
         {
             item.AdvanceQueue();
-        }
-
-        if (interactionParticlePrefab != null)
-        {
-            GameObject interactionParticle = Instantiate(interactionParticlePrefab, NPCs[0].transform.position, Quaternion.identity);
-            Destroy(interactionParticle, 2f);
-        }
-        
-        NPCs.RemoveAt(0);
+        }          
     }
 
     private void Update()
