@@ -12,6 +12,8 @@ public class NPCData : GameData
     public string City;
     public string Occupation;
     public AnimationCurve StressGenerationCurve;
+    public float StressOnSuccess;
+    public float StressOnFail;
     public UsableItemType ItemNeeded = UsableItemType.None; 
     public enum Need 
     {Money, Food, Drugs };
