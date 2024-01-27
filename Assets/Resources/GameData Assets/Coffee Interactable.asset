@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feda0966e0a6d7e479dff8d73df59da8, type: 3}
-  m_Name: Test Item
+  m_Name: Coffee Interactable
   m_EditorClassIdentifier: 
   Active: 1
-  Prefab: {fileID: 0}
-  ItemType: 0
+  Prefab: {fileID: 4209094958982494921, guid: 793a04690d3b2124fb84d6e575a78e71, type: 3}
+  ItemType: 3
+  InteractionMode: 1

@@ -76,16 +76,27 @@ public class Interactor : MonoBehaviour
             if (interacting || hoverInteractables.Count == 0)
                 return;
 
-            interacting = true;
+            if (hoverInteractables[0].InteractionType == InteractionMode.None)
+                return;
+
             interactable = hoverInteractables[0];
             interactable.InteractStart(this, interactableHolder);
 
-            if (interactableHolderMoveRoutine != null)
-                StopCoroutine(interactableHolderMoveRoutine);
-            if (gameObject.activeInHierarchy)
-                interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
+            if (interactable.InteractionType == InteractionMode.Click)
+            {
+                StopInteraction();
+            }
+            else
+            {
+                interacting = true;
 
-            onInteractStart.Invoke(interactable, this);
+                if (interactableHolderMoveRoutine != null)
+                    StopCoroutine(interactableHolderMoveRoutine);
+                if (gameObject.activeInHierarchy)
+                    interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
+
+                onInteractStart.Invoke(interactable, this);
+            }            
         }
     }
 

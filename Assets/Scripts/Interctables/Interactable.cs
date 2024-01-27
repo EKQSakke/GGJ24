@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
+    public InteractionMode InteractionType => myData != null ? myData.InteractionMode : InteractionMode.Drag;
+
     [Header("Events")]
+    [SerializeField] private UsableItemData DefaultDataToUse;
     [SerializeField] private UnityEvent<Interactable, Interactor> onInteractStart; public UnityEvent<Interactable, Interactor> OnInteractStart { get { return onInteractStart; } }
     [SerializeField] private UnityEvent<Interactable, Interactor> onInteractEnd; public UnityEvent<Interactable, Interactor> OnInteractEnd { get { return onInteractEnd; } }
     [SerializeField] private UnityEvent<Interactable, Interactor> onHoverStart; public UnityEvent<Interactable, Interactor> OnHoverStart { get { return onHoverStart; } }
@@ -14,18 +17,25 @@ public class Interactable : MonoBehaviour
     private Transform originalParent;
     private bool interacting;
     private bool hovering;
+    private UsableItemData myData;
 
-    void Awake()
+    private void Awake()
     {
         Initialize();
     }
-
-    void Initialize()
+    
+    private void Initialize()
     {
         originalParent = transform.parent;
+        SetupInteractable(DefaultDataToUse);
     }
 
-    public void HoverStart(Interactor interactor)
+    public virtual void SetupInteractable(UsableItemData data)
+    {
+        myData = data;
+    }
+
+    public virtual void HoverStart(Interactor interactor)
     {
         if (hovering)
             return;
@@ -36,7 +46,7 @@ public class Interactable : MonoBehaviour
         onHoverStart.Invoke(this, interactor);
     }
 
-    public void HoverEnd(Interactor interactor)
+    public virtual void HoverEnd(Interactor interactor)
     {
         if (!hovering)
             return;
@@ -47,7 +57,7 @@ public class Interactable : MonoBehaviour
         onHoverEnd.Invoke(this, interactor);
     }
 
-    public void InteractStart(Interactor interactor, Transform parent = null)
+    public virtual void InteractStart(Interactor interactor, Transform parent = null)
     {
         if (interacting)
             return;
@@ -55,11 +65,14 @@ public class Interactable : MonoBehaviour
         Debug.Log("Interactable | " + gameObject.name + ": Interact Start");
 
         interacting = true;
-        ParentInteractable(parent);
+
+        if (InteractionType == InteractionMode.Drag)
+            ParentInteractable(parent);
+
         onInteractStart.Invoke(this, interactor);
     }
 
-    public void InteractEnd(Interactor interactor)
+    public virtual void InteractEnd(Interactor interactor)
     {
         if (!interacting)
             return;
@@ -71,7 +84,7 @@ public class Interactable : MonoBehaviour
         onInteractEnd.Invoke(this, interactor);
     }
 
-    void ParentInteractable(Transform parent)
+    private void ParentInteractable(Transform parent)
     {
         transform.SetParent(parent);
 

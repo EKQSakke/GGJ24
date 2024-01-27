@@ -59,6 +59,8 @@ public class GameManager : Singleton<GameManager>
         }        
     }
 
+    #region Round handling
+
     private void StartNewGame()
     {
         currentGameRound = 0;
@@ -119,18 +121,23 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateGameState()
     {
-        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;
-        StressLevel.value = currentStressLevel;
+        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;        
+        ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * Time.deltaTime);
+    }
+
+    #endregion
+
+    public void ChangeStressAmount(float changeBy)
+    {
+        currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
 
         if (currentStressLevel > currentRoundSettings.StressThreshold)
         {
             Debug.LogError("STRESSED OUT!");
             currentStressLevel = 0f;
         }
-        else
-        {
-            currentStressLevel += currentRoundSettings.DefaultStressPerSecond * Time.deltaTime;
-        }
+
+        StressLevel.value = currentStressLevel;
     }
 
     private void SetDayOverUI(bool setTo)
