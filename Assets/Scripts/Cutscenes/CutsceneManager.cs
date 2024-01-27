@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,14 +35,29 @@ public class CutsceneManager : Singleton<CutsceneManager>
     public void PlayCutscene(string sceneName)
     {
         cutsceneName = sceneName;
-        SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
+        StartCoroutine(StartCutscene());
+    }
+
+    IEnumerator StartCutscene()
+    {
         GameManager.Instance.CanGetStress = false;
+        var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
+        yield return new WaitForSeconds(crossFadeDuration);
+        SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
     }
 
     public void ReturnToGame()
     {
+        StartCoroutine(EndCutscene());
+    }
+    
+    IEnumerator EndCutscene()
+    {
+        var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
+        yield return new WaitForSeconds(crossFadeDuration);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName));
         GameManager.Instance.CanGetStress = true;
     }
+
 }
 

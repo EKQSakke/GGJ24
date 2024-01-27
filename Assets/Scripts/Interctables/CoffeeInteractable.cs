@@ -40,5 +40,4 @@ public class CoffeeInteractable : Interactable
         }
         CoffeeAmount = amount;
     }
-
 }
