@@ -132,4 +132,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 151d32148fde00b4f9f5ed51bb2965a0, type: 3}
   - {fileID: 21300000, guid: 01815eee22d459943a87f4471dbf294b, type: 3}
   - {fileID: 21300000, guid: 5a00d0fcd4a78ca4a8d4bd51568a926a, type: 3}
-  NPCScaleVariance: 0.1
+  Hats:
+  - {fileID: 21300000, guid: bb9b3b65c7a0f814bbad1f7ddd65b630, type: 3}
+  - {fileID: 21300000, guid: 369262ad713d92e40ab94e377f7f3f03, type: 3}
+  - {fileID: 21300000, guid: d2a0567f023aa0845b935dfdb859b4e6, type: 3}
+  - {fileID: 21300000, guid: ff90bdb2d3d27e34f9441ce1e99a8044, type: 3}
+  - {fileID: 21300000, guid: bd18bc939de81d74eba76d71c733807f, type: 3}
+  - {fileID: 21300000, guid: 7b7ba7b7aaa511b46b62185e7c9d604d, type: 3}
+  - {fileID: 21300000, guid: bdd200a48d6d1314d9ffcc8ced5afc2a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NPCScaleVariance: 0.05
