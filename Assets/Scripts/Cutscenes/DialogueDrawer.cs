@@ -25,7 +25,10 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
 
     public void ShowText(string input)
     {
-        StopCoroutine(currentRoutine);
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+        }
         text.text = "";
         currentRoutine = StartCoroutine(DrawText(input));
     }

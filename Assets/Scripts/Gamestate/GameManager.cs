@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -22,6 +23,8 @@ public class GameManager : Singleton<GameManager>
     public Slider StressLevel;
     public TextMeshProUGUI DayTitleText;
     public GameObject DayOverUI;
+    public GameObject PaperDropArea;
+    public GameObject NPCDropArea;
 
     internal bool GameCurrentlyActive = false;
     internal float Stress => currentStressLevel;
@@ -103,10 +106,11 @@ public class GameManager : Singleton<GameManager>
         DayTitleText.text = "Day " + (currentGameRound + 1);
         SetDayOverUI(false);
 
-        List<UsableItemData> items = GameData.GetAll<UsableItemData>();
+        List<UsableItemData> items = new List<UsableItemData>(currentRoundSettings.ItemsToSpawn);
 
-        foreach (UsableItemSpawner spawner in ItemSpawners)
+        foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
         {
+            spawner.SetSpawnerInteractableState(true);
             spawner.CreateItems(items);
         }
 
@@ -115,6 +119,9 @@ public class GameManager : Singleton<GameManager>
             QueSpawner = FindObjectOfType<NPCSpawner>();
         }
         QueSpawner.SpawnNPCs();
+
+        PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
+        NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -127,6 +134,11 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Ending game round: " + currentGameRound);
         currentGameRound++;
+
+        foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
+        {
+            spawner.SetSpawnerInteractableState(false);
+        }
 
         RoundOver?.Invoke();
 
@@ -181,4 +193,7 @@ public class GameRoundSettings
     public float StressThreshold = 0.75f;
     [Range(0f, 1f)]
     public float DefaultStressPerSecond = 0.15f;
+    public bool UseNPCDropArea = true;
+    public List<UsableItemSpawner> UsedSpawnersForRound;
+    public List<UsableItemData> ItemsToSpawn;
 }
