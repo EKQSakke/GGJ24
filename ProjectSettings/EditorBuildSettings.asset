@@ -12,11 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: 6e59c893c2046684bb288589d9085811
   - enabled: 1
-    path: Assets/Scenes/Sakke_GameScene.unity
-    guid: 79f25a05a1747fa4a932653924a7fe44
-  - enabled: 0
-    path: Assets/Scenes/Cutscene/Sakke_Cutscene_Test1.unity
-    guid: 703c78d46ea2853489127dce51c72df5
+    path: Assets/Scenes/Cutscene/Cutscene_Test1.unity
+    guid: 179852f47d5348e45a9e920f9f425f29
   - enabled: 1
     path: Assets/Scenes/Cutscene/Cutscene_Test2.unity
     guid: e436d12ea6182644a9829322f089e4f9
