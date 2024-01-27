@@ -10,14 +10,14 @@ public class PlayerLook : MonoBehaviour
 
     private Vector2 rotation;
 
-    public void RotateLook(Vector2 rotationDelta) // Look rotation (UP down is Camera) (Left right is Transform rotation)
+    public void RotateLook(Vector2 rotationDelta)
     {
         rotation.y += rotationDelta.x * lookSpeed;
         rotation.x += -rotationDelta.y * lookSpeed;
+        
         rotation.y = Mathf.Clamp(rotation.y, -horizontalClamp, horizontalClamp);
         rotation.x = Mathf.Clamp(rotation.x, -verticalClamp, verticalClamp);
 
-        //transform.eulerAngles = new Vector2(0, rotation.y);
         transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, 0);
     }
 }
