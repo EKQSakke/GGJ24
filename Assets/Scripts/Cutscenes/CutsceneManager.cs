@@ -33,7 +33,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
     IEnumerator StartCutscene()
     {
-        GameManager.Instance.CanGetStress = false;
+        GameManager.Instance.OnBreak = true;
         var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
         yield return new WaitForSeconds(crossFadeDuration);
         SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
@@ -49,7 +49,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
         yield return new WaitForSeconds(crossFadeDuration);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName));
-        GameManager.Instance.CanGetStress = true;
+        GameManager.Instance.OnBreak = false;
     }
 
 }
