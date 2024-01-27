@@ -101,7 +101,7 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
-        QueSpawner.SpawnNPCs();
+        QueSpawner.SpawnNPCs(10);
 
         PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
         NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -16,6 +17,25 @@ public class NPC : MonoBehaviour
     public int positionInQueue;
     private float step = 2f;
 
+    private NPCDialogueData dialogueData;
+
+    private void Start()
+    {
+
+        List<NPCDialogueData> allData = GameData.GetAll<NPCDialogueData>();
+
+        foreach (NPCDialogueData dialogue in allData)
+        {
+            if (dialogue.name == data.ItemNeeded.ToString())
+            dialogueData = dialogue;
+        }
+        if (positionInQueue == 0)
+        {
+            state = State.atDesk;
+            AdvanceQueue();
+        }
+
+    }
     public bool ItemGivenToMe(UsableItemData item)
     {
         if (item.ItemType == data.ItemNeeded)
@@ -41,13 +61,14 @@ public class NPC : MonoBehaviour
                 MoveForward();
                 if (positionInQueue == 0)
                 {
+                Debug.Log(data.name + "ServiceInProgress");
                     state = State.atDesk;
                     AdvanceQueue();
                 }
                 break;
             case State.atDesk:
-                Debug.Log(data.name + "ServiceInProgress");
-                GetHappy();
+                if (dialogueData != null)
+                DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
                 break;
             case State.Happy: 
                 Debug.Log("Happy");
