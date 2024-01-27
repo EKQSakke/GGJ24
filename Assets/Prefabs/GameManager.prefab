@@ -1306,11 +1306,17 @@ MonoBehaviour:
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
     UseNPCDropArea: 0
+    UsedSpawnersForRound: []
+    ItemsToSpawn: []
   - TimeInSeconds: 60
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
     UseNPCDropArea: 1
+    UsedSpawnersForRound: []
+    ItemsToSpawn: []
+  CurrentGameSettings: {fileID: 11400000, guid: 2693cd6381718f645b41003f338a17da, type: 2}
   QueSpawner: {fileID: 0}
+  QueMover: {fileID: 0}
   ItemSpawners: []
   GameClock: {fileID: 5163546416575744013}
   StressLevel: {fileID: 7267372273202515881}

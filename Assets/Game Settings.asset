@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd94d9a86d767204892f292494071c4b, type: 3}
+  m_Name: Game Settings
+  m_EditorClassIdentifier: 
+  AngryFaces:
+  - {fileID: 21300000, guid: 0c3cc1e3bb11116439dcabb030b5d0de, type: 3}
+  - {fileID: 21300000, guid: 9dfc9113109bea546a19d6c6606e695b, type: 3}
+  - {fileID: 21300000, guid: 7b52680f29168fe419d01ed875408f0f, type: 3}
+  NeutralFaces:
+  - {fileID: 21300000, guid: 6c1288592c515c94f879df838d117c44, type: 3}
+  - {fileID: 21300000, guid: df5cfd0359944f744be6d80844ac3e3e, type: 3}
+  - {fileID: 21300000, guid: 20c36b0ee2a36d54da4bfe7158be04d8, type: 3}
+  - {fileID: 21300000, guid: 37df6973d241a9d4a8133480b0e1ec8a, type: 3}
+  - {fileID: 21300000, guid: 3a4722f98d9b5384481561c7d3dd274b, type: 3}
+  HappyFaces:
+  - {fileID: 21300000, guid: b78e2e83a03587e4f843e7bf95223c8e, type: 3}
+  - {fileID: 21300000, guid: 277909da9d1eea64d84d64d50360c30f, type: 3}
+  - {fileID: 21300000, guid: 18aa0887b7546e74db1438de3e97ede7, type: 3}
+  Heads:
+  - {fileID: 21300000, guid: 7e91162c4d81efa449cc9a257c85af1e, type: 3}
+  - {fileID: 21300000, guid: 75eb74b07be9c5241b05bc22055670d0, type: 3}
+  - {fileID: 21300000, guid: ad92621fc9870cc43ba4b2d20c9435ef, type: 3}
+  - {fileID: 21300000, guid: 507cb38a02e31fe49bef9d059ee83f66, type: 3}
+  - {fileID: 21300000, guid: d0f1dfaac2cdb3f4b8e0d6597be6fe4d, type: 3}
+  - {fileID: 21300000, guid: f09ce58b3e867f64a9dee8b15fa161b9, type: 3}
+  - {fileID: 21300000, guid: 2cdffd9daf5f73447a747148c2763fe3, type: 3}
