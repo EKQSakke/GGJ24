@@ -22,24 +22,23 @@ public class NPCSpawner : MonoBehaviour
     private void Start()
     {      
         if (GameManager.Instance == null)
-            SpawnNPCs();
+            SpawnNPCs(10);
     }
 
-    public void SpawnNPCs()
+    public void SpawnNPCs(int amount)
     {
         if (NPCDatas.IsEmpty())
             NPCDatas = GameData.GetAll<NPCData>();
 
         ClearQueue();
-        int positionInQueue = 0;
 
-        foreach (NPCData data in NPCDatas)
+        for (int positionInQueue = 0; positionInQueue < amount; positionInQueue++)
         {
+            NPCData data = NPCDatas.GetRandomElementFromList();
             NPC nPC = Instantiate(data.NPCPrefab, spawnLocation, Quaternion.identity).GetComponent<NPC>();
             spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y, spawnLocation.z + distanceToNextNPC);
             NPCs.Add(nPC);
             nPC.positionInQueue = positionInQueue;
-            positionInQueue++;
             nPC.data = data;
         }
     }
@@ -80,6 +79,7 @@ public class NPCSpawner : MonoBehaviour
         }
 
         NPCs.RemoveAt(0);
+        SpawnNPCs(1);
         AdvanceNextNPC();
     }
 
