@@ -95,7 +95,7 @@ public class NPC : MonoBehaviour
         SetMood(NPCMood.Neutral);
 
         if (dialogueData != null)
-            DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
+            DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList(), this);
     }
 
     public void CreateRandomVisuals()
@@ -110,12 +110,18 @@ public class NPC : MonoBehaviour
     {
         state = State.Happy;
         SetMood(NPCMood.Happy);
+
+        if (SoundEffectManager.instance != null)
+            SoundEffectManager.instance.PlaySoundEffectBank("HappyGrunt", 1f);
     }
 
     private void GetMad()
     {
         state = State.Mad;
         SetMood(NPCMood.Angry);
+
+        if (SoundEffectManager.instance != null)
+            SoundEffectManager.instance.PlaySoundEffectBank("AngryGrunt", 1f);
     }
 
     private void MoveForward()

@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Game Settings", menuName = "Custom Scriptables/Game Settings")]
 public class BasicGameSettings : ScriptableObject
 {
-
+    [Header("NPC variation")]
     public NPCMoodSprites NeutralSprites;
     public NPCMoodSprites HappySprites;
     public NPCMoodSprites AngrySprites;
@@ -14,6 +14,9 @@ public class BasicGameSettings : ScriptableObject
     public List<Sprite> Bodies;
     public List<Sprite> Hats;
     public float NPCScaleVariance = 0.15f;
+
+    [Header("Sounds")]
+    public List<AudioClip> CustomerVoiceClips;
 
 }
 

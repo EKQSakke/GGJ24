@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1821bf4cb2f54fa4c9849bfe647335a2, type: 3}
+  m_Name: Angry Grunts
+  m_EditorClassIdentifier: 
+  clipIdentifier: AngryGrunt
+  soundEffectList:
+  - clipToPlay: {fileID: 8300000, guid: 8147717579b557b4aaa8f5efadfb6f9e, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: b3d46f92fa9dd8d4dad008d315f68ebe, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 439d32a3f8e1e964dbecf857cc45cf94, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 1d664a2697928be47af1b18f493153f5, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 0439438f84371114287f8bc04c2eca49, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 57f12d462bbb3eb409622f9c1197322d, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 0e5f20ab97f9c20449ead076c353aa64, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 42c4855a6d6b5d2449bb16230bb501e3, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 62112f66f6f03114ea1858c8159b02d1, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 09996bc4eae10a74fa20325b3d1914aa, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 50132f247b911254287b2e80d0cfb38b, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 03ef34e03c77188488e4f669e0cddc35, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: c2ea2202b2fba79478fe2478c17d515c, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: c3cf5f1024776284ca20ffb995c6c7a7, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 81017cdf1b66e0847a4ae458e39112e9, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 2a84c39cf03599f4fa0a320a4f1f1cfe, type: 3}
+    effectVolume: 0.4

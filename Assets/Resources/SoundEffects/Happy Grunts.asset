@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1821bf4cb2f54fa4c9849bfe647335a2, type: 3}
+  m_Name: Happy Grunts
+  m_EditorClassIdentifier: 
+  clipIdentifier: HappyGrunt
+  soundEffectList:
+  - clipToPlay: {fileID: 8300000, guid: c67fc686dc9c76e4abc04df4ae0ca21d, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 9643d71b8561b444f84689de83e2e0a6, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 8c4c54299c63989499495cea614551ea, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 392a3316a05a2e348a357366c3dacea5, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 0c56ec7bef2000a42815011fa2396fa0, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: bd38aa73c53b81d4fa3a0b3de9e23688, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 99f546e297f5f5d4d88ebd30212705b3, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: a0ef92b68b1254144b22996e41678fa0, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: ca3b32b15737ece4996b938b71ede48a, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 2c5564361c174f945a74d915e3a14cc7, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: e51fe0fd2c90c32419d7fcb4f9bc7fe2, type: 3}
+    effectVolume: 0.4
