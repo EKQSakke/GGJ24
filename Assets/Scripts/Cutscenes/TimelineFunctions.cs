@@ -4,7 +4,7 @@ public class TimelineFunctions : MonoBehaviour
 {
     public void TestMe()
     {
-        DialogueDrawer.Instance.ShowText("Lorem ipsum dolor sit amet.");
+        DialogueDrawer.Instance.ShowText("How relaxing...");
     }
 
     public void EndCutscene()

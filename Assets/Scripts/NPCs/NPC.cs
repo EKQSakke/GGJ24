@@ -90,6 +90,7 @@ public class NPC : MonoBehaviour
     {
         state = State.atDesk;
         currentNPCAtDesk = this;
+        GameManager.Instance.ResetNpcTimer();
 
         SetMood(NPCMood.Neutral);
 
