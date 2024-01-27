@@ -12,8 +12,11 @@ public class GameManager : Singleton<GameManager>
     public static Action RoundStart;
     public static Action RoundOver;
 
+    public static BasicGameSettings GameSettings => Instance.CurrentGameSettings;
+
     [Header("Game settings")]
     public List<GameRoundSettings> GameRounds = new List<GameRoundSettings>();
+    public BasicGameSettings CurrentGameSettings;
 
     [Header("References")]
     public NPCSpawner QueSpawner;
