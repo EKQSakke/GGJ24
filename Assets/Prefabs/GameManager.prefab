@@ -1303,7 +1303,7 @@ MonoBehaviour:
   SetDontDestroy: 0
   GameRounds:
   - TimeInSeconds: 120
-    StressThreshold: 0.75
+    StressThreshold: 1
     DefaultStressPerSecond: 0.01
     UseNPCDropArea: 0
     UsedSpawnersForRound:
@@ -1315,7 +1315,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
     DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
   - TimeInSeconds: 120
-    StressThreshold: 0.75
+    StressThreshold: 1
     DefaultStressPerSecond: 0.01
     UseNPCDropArea: 1
     UsedSpawnersForRound: []
@@ -1331,3 +1331,4 @@ MonoBehaviour:
   DayOverUI: {fileID: 6400074902302013907}
   PaperDropArea: {fileID: 0}
   NPCDropArea: {fileID: 0}
+  timeToFullNpcStressMultiplier: 10
