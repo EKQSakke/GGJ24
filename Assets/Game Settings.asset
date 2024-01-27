@@ -12,20 +12,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd94d9a86d767204892f292494071c4b, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  AngryFaces:
-  - {fileID: 21300000, guid: 0c3cc1e3bb11116439dcabb030b5d0de, type: 3}
-  - {fileID: 21300000, guid: 9dfc9113109bea546a19d6c6606e695b, type: 3}
-  - {fileID: 21300000, guid: 7b52680f29168fe419d01ed875408f0f, type: 3}
-  NeutralFaces:
-  - {fileID: 21300000, guid: 6c1288592c515c94f879df838d117c44, type: 3}
-  - {fileID: 21300000, guid: df5cfd0359944f744be6d80844ac3e3e, type: 3}
-  - {fileID: 21300000, guid: 20c36b0ee2a36d54da4bfe7158be04d8, type: 3}
-  - {fileID: 21300000, guid: 37df6973d241a9d4a8133480b0e1ec8a, type: 3}
-  - {fileID: 21300000, guid: 3a4722f98d9b5384481561c7d3dd274b, type: 3}
-  HappyFaces:
-  - {fileID: 21300000, guid: b78e2e83a03587e4f843e7bf95223c8e, type: 3}
-  - {fileID: 21300000, guid: 277909da9d1eea64d84d64d50360c30f, type: 3}
-  - {fileID: 21300000, guid: 18aa0887b7546e74db1438de3e97ede7, type: 3}
+  NeutralSprites:
+    EyeSprites:
+    - {fileID: 21300000, guid: b8b0b510de70fe348aa20e9a25994baf, type: 3}
+    - {fileID: 21300000, guid: a082756b8cc39e24488bf678fc0a3d33, type: 3}
+    - {fileID: 21300000, guid: f00c479ce3d088e4d93fbd42463f0b32, type: 3}
+    - {fileID: 21300000, guid: b30cb08f53dff5a468f4c2d583002117, type: 3}
+    - {fileID: 21300000, guid: 49485d4f841e6014d80a17735bf18b3e, type: 3}
+    - {fileID: 21300000, guid: e4f3d551e6836da4dbe35070ab785eb2, type: 3}
+    - {fileID: 21300000, guid: 824d2d8f8f6428f47a3bff29be53b7b5, type: 3}
+    - {fileID: 21300000, guid: 74ab79494c2c1884fab83348068fabec, type: 3}
+    MouthSprites:
+    - {fileID: 21300000, guid: c9909bafe2e7ff44eb26c6ae679503f0, type: 3}
+    - {fileID: 21300000, guid: 2d0a1d47393466d438eba46945c99826, type: 3}
+    - {fileID: 21300000, guid: 67d4ab798861d674abd00036d653bcda, type: 3}
+    - {fileID: 21300000, guid: 61eea4c14a5fdee4599984bc852f7068, type: 3}
+    - {fileID: 21300000, guid: 484a38b4fe82671478f81e298b41e118, type: 3}
+    - {fileID: 21300000, guid: 9c578e26e3d449c4ebee895eac0408ba, type: 3}
+    NoseSprites:
+    - {fileID: 21300000, guid: a2a53f855a5cb00429b564aac6f9d893, type: 3}
+    - {fileID: 21300000, guid: 192e57eccb74acd4bbf7ab8e2a132794, type: 3}
+    - {fileID: 21300000, guid: 7b7e324d1c3b35f40a84a277ce4c07b1, type: 3}
+    - {fileID: 21300000, guid: b952f1735d0295a4d9929462f8abdd5d, type: 3}
+    - {fileID: 21300000, guid: 4d5f674fc4c70494aabe6f799e514cef, type: 3}
+    - {fileID: 21300000, guid: ceefd2a32028a0041b1922efb12e4b76, type: 3}
+    - {fileID: 21300000, guid: f2608699d495b424583169cf1340dac3, type: 3}
+    - {fileID: 21300000, guid: 02204b04f5be5d44f89e510b63877f12, type: 3}
+    - {fileID: 21300000, guid: 2aeeed703f06b2840807fa76f4f0a956, type: 3}
+    - {fileID: 21300000, guid: 9aa1d9269ace5234592ff10e692e297c, type: 3}
+    - {fileID: 21300000, guid: d999cfb83db0b88428d09f3fb05b388b, type: 3}
+    - {fileID: 21300000, guid: bc22eb93bbb8467478b93dbe23c3f6d7, type: 3}
+    - {fileID: 21300000, guid: ac4d900c5cb947d4e83c5bfcaadd354f, type: 3}
+    - {fileID: 21300000, guid: 942eb9d7806b9084683a7ba8e5b7bd41, type: 3}
+    - {fileID: 21300000, guid: 5100f9266d383dd41a35079d62c32a3d, type: 3}
+  HappySprites:
+    EyeSprites:
+    - {fileID: 21300000, guid: 97f5646e6e4611849b778b0f52b0aab6, type: 3}
+    - {fileID: 21300000, guid: 7487ed346526425488409b61102adc1d, type: 3}
+    - {fileID: 21300000, guid: 0387d31231e4d44479c2d62ce40a9f94, type: 3}
+    - {fileID: 21300000, guid: 03b319585092f6d49b469c2a3a264155, type: 3}
+    - {fileID: 21300000, guid: f8f824354162a9946a64cd439d5387ad, type: 3}
+    - {fileID: 21300000, guid: 6267f28b02ed4044e99407fc871c2f90, type: 3}
+    - {fileID: 21300000, guid: 87c0b2da051c3ee4abdf202ec7d223f1, type: 3}
+    MouthSprites:
+    - {fileID: 21300000, guid: e7306a587391bc84487427cb217e11e4, type: 3}
+    - {fileID: 21300000, guid: fcc68ef033c881c42ad3d39225515e2e, type: 3}
+    - {fileID: 21300000, guid: 9cb237c0b7de9ec449c42efdf7a4dd98, type: 3}
+    - {fileID: 21300000, guid: 343f99623b19dfb4497c318a024b52df, type: 3}
+    - {fileID: 21300000, guid: ea3832b9ab8ae0345b30f3301a71eb78, type: 3}
+    - {fileID: 21300000, guid: 9b30d25f80c321c43b58bd95b3d1070f, type: 3}
+    - {fileID: 21300000, guid: 5cf85c38da3ce4c4087cb8af95517875, type: 3}
+    - {fileID: 21300000, guid: c56db66212e3f414ca04132d0cc178da, type: 3}
+    NoseSprites:
+    - {fileID: 21300000, guid: a2a53f855a5cb00429b564aac6f9d893, type: 3}
+    - {fileID: 21300000, guid: 192e57eccb74acd4bbf7ab8e2a132794, type: 3}
+    - {fileID: 21300000, guid: 7b7e324d1c3b35f40a84a277ce4c07b1, type: 3}
+    - {fileID: 21300000, guid: b952f1735d0295a4d9929462f8abdd5d, type: 3}
+    - {fileID: 21300000, guid: 4d5f674fc4c70494aabe6f799e514cef, type: 3}
+    - {fileID: 21300000, guid: ceefd2a32028a0041b1922efb12e4b76, type: 3}
+    - {fileID: 21300000, guid: f2608699d495b424583169cf1340dac3, type: 3}
+    - {fileID: 21300000, guid: 02204b04f5be5d44f89e510b63877f12, type: 3}
+    - {fileID: 21300000, guid: 2aeeed703f06b2840807fa76f4f0a956, type: 3}
+    - {fileID: 21300000, guid: 9aa1d9269ace5234592ff10e692e297c, type: 3}
+    - {fileID: 21300000, guid: d999cfb83db0b88428d09f3fb05b388b, type: 3}
+    - {fileID: 21300000, guid: bc22eb93bbb8467478b93dbe23c3f6d7, type: 3}
+    - {fileID: 21300000, guid: ac4d900c5cb947d4e83c5bfcaadd354f, type: 3}
+    - {fileID: 21300000, guid: 942eb9d7806b9084683a7ba8e5b7bd41, type: 3}
+    - {fileID: 21300000, guid: 5100f9266d383dd41a35079d62c32a3d, type: 3}
+  AngrySprites:
+    EyeSprites:
+    - {fileID: 21300000, guid: 73e7786d0a7b997469a62890de8ea9f3, type: 3}
+    - {fileID: 21300000, guid: 54da6bcff99325d419c1fd5cd322d49b, type: 3}
+    - {fileID: 21300000, guid: ffce219286fc35d48b5ae52b8fe1fd29, type: 3}
+    - {fileID: 21300000, guid: f7aaa2066d9a774429cd2f0cdee202b2, type: 3}
+    - {fileID: 21300000, guid: 013d5ea7e3bfe224bb828a6d4d8ccce6, type: 3}
+    - {fileID: 21300000, guid: 1acd5985d03788d4f99503f8183d945c, type: 3}
+    - {fileID: 21300000, guid: 86247ebe549771e48b2aee4c17ae970d, type: 3}
+    - {fileID: 21300000, guid: 0e8c68c313bc4664cbb55d832f010e06, type: 3}
+    - {fileID: 21300000, guid: fec03a48a359c3e45ae43911063c00ce, type: 3}
+    MouthSprites:
+    - {fileID: 21300000, guid: d2ce0392ea7e04d46893314b31e48009, type: 3}
+    - {fileID: 21300000, guid: 4c1a37ab995e1b9418a3c005fe724ac4, type: 3}
+    - {fileID: 21300000, guid: 822608be74ca0d74e9c7ee941c79cee3, type: 3}
+    - {fileID: 21300000, guid: 46c8a53a352f6ac419e08ee5b4fc9b4a, type: 3}
+    - {fileID: 21300000, guid: c314b55d57e92bf4b8bbc3ff31911490, type: 3}
+    - {fileID: 21300000, guid: 631cc221b01f0b541aa697ea44927969, type: 3}
+    - {fileID: 21300000, guid: ac3ffa9b8efe7c14ea616a901ff6d3a4, type: 3}
+    - {fileID: 21300000, guid: f432658168ff4134abc28206dcbfdcb8, type: 3}
+    - {fileID: 21300000, guid: ad9f819ff501482469da040b8660da09, type: 3}
+    - {fileID: 21300000, guid: 84598e59fe73c114d899743e253dc201, type: 3}
+    NoseSprites:
+    - {fileID: 21300000, guid: a2a53f855a5cb00429b564aac6f9d893, type: 3}
+    - {fileID: 21300000, guid: 192e57eccb74acd4bbf7ab8e2a132794, type: 3}
+    - {fileID: 21300000, guid: 7b7e324d1c3b35f40a84a277ce4c07b1, type: 3}
+    - {fileID: 21300000, guid: b952f1735d0295a4d9929462f8abdd5d, type: 3}
+    - {fileID: 21300000, guid: 4d5f674fc4c70494aabe6f799e514cef, type: 3}
+    - {fileID: 21300000, guid: ceefd2a32028a0041b1922efb12e4b76, type: 3}
+    - {fileID: 21300000, guid: f2608699d495b424583169cf1340dac3, type: 3}
+    - {fileID: 21300000, guid: 02204b04f5be5d44f89e510b63877f12, type: 3}
+    - {fileID: 21300000, guid: 2aeeed703f06b2840807fa76f4f0a956, type: 3}
+    - {fileID: 21300000, guid: 9aa1d9269ace5234592ff10e692e297c, type: 3}
+    - {fileID: 21300000, guid: d999cfb83db0b88428d09f3fb05b388b, type: 3}
+    - {fileID: 21300000, guid: bc22eb93bbb8467478b93dbe23c3f6d7, type: 3}
+    - {fileID: 21300000, guid: ac4d900c5cb947d4e83c5bfcaadd354f, type: 3}
+    - {fileID: 21300000, guid: 942eb9d7806b9084683a7ba8e5b7bd41, type: 3}
+    - {fileID: 21300000, guid: 5100f9266d383dd41a35079d62c32a3d, type: 3}
   Heads:
   - {fileID: 21300000, guid: 7e91162c4d81efa449cc9a257c85af1e, type: 3}
   - {fileID: 21300000, guid: 75eb74b07be9c5241b05bc22055670d0, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,30 @@ using UnityEngine;
 public class BasicGameSettings : ScriptableObject
 {
 
-    public List<Sprite> AngryFaces;
-    public List<Sprite> NeutralFaces;
-    public List<Sprite> HappyFaces;
+    public NPCMoodSprites NeutralSprites;
+    public NPCMoodSprites HappySprites;
+    public NPCMoodSprites AngrySprites;
     public List<Sprite> Heads;
+
+}
+
+[Serializable]
+public class NPCMoodSprites
+{
+    public List<Sprite> EyeSprites;
+    public List<Sprite> MouthSprites;
+    public List<Sprite> NoseSprites;
+
+    public NPCVisualLook GiveRandomSprites()
+    {
+        NPCVisualLook randomLook = new NPCVisualLook()
+        {
+            Eyes = EyeSprites.GetRandomElementFromList(),
+            Mouth = MouthSprites.GetRandomElementFromList(),
+            Nose = NoseSprites.GetRandomElementFromList()
+        };
+
+        return randomLook;
+    }
 
 }

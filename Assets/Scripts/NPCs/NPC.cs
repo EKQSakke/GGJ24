@@ -34,12 +34,7 @@ public class NPC : MonoBehaviour
             if (dialogue.name == data.ItemNeeded.ToString())
                 dialogueData = dialogue;
         }
-
-        if (VisualScript != null)
-        {
-            VisualScript.SetupVisuals();
-        }
-
+        
         SetMood(NPCMood.Neutral);
     }
 
@@ -100,6 +95,14 @@ public class NPC : MonoBehaviour
 
         if (dialogueData != null)
             DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
+    }
+
+    public void CreateRandomVisuals()
+    {
+        if (VisualScript != null)
+        {
+            VisualScript.SetupVisuals();
+        }
     }
 
     private void GetHappy()
