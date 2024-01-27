@@ -372,7 +372,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 25a4cf990b20a3c41be43a428413e8ca, type: 2}
 --- !u!4 &236656585
 Transform:
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 8545257ca365c084d8f4b9a89416d84e, type: 2}
 --- !u!1 &861357496
 GameObject:
