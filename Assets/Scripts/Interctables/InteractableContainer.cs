@@ -8,14 +8,15 @@ public class InteractableContainer : Interactable
     [Serializable]
     public class ContainerState
     {
-        public string AnimatorTriggerToSet;
+        public bool MoveContainerToPosition = false;
+        public Vector3 PositionOffset = Vector3.zero;
         public float timeToWaitForAnimation;
         public bool InteractablesInContainerEnabled = true;
     }
 
     public Action ContainerStateChanged;
 
-    public Animator Animator;
+    public Transform MovableTransform;
     public List<ContainerState> ContainerStates = new List<ContainerState>();
     
     public override InteractionMode InteractionType => currentlyAnimating ? InteractionMode.None : base.InteractionType;
@@ -25,15 +26,18 @@ public class InteractableContainer : Interactable
     private ContainerState currentState => ContainerStates[currentStateIndex];
     private float animationTime => currentState.timeToWaitForAnimation;
 
-    private float timeAnimated = 0f;
+    private Vector3? defaultPos;
     private int currentStateIndex = 0;
     private bool currentlyAnimating = false;
+        
+    public override void SetupInteractable(UsableItemData data)
+    {
+        base.SetupInteractable(data);
+        defaultPos = MovableTransform.localPosition;
+    }
 
     public override void InteractEnd(Interactor interactor)
     {
-        Debug.Log("set trigger: " + ContainerStates[currentStateIndex].AnimatorTriggerToSet);
-
-        timeAnimated = 0;
         currentStateIndex++;
 
         if (currentStateIndex >= ContainerStates.Count)
@@ -41,14 +45,9 @@ public class InteractableContainer : Interactable
             currentStateIndex = 0;
         }
 
-        if (string.IsNullOrEmpty(currentState.AnimatorTriggerToSet) == false)
-        {
-            Animator.SetTrigger(currentState.AnimatorTriggerToSet);
-        }
-
         if (currentState.timeToWaitForAnimation > 0)
         {
-            currentlyAnimating = true;
+            StartCoroutine(AnimateToPosition());            
         }
         else
         {
@@ -58,20 +57,24 @@ public class InteractableContainer : Interactable
         ContainerStateChanged?.Invoke();
         base.InteractEnd(interactor);
     }
-
-    protected override void Update()
+    
+    private IEnumerator AnimateToPosition()
     {
-        base.Update();
+        currentlyAnimating = true;
+        float timeAnimated = 0f;
+        Vector3 startPos = MovableTransform.localPosition;
+        Vector3 endPos = (Vector3)defaultPos + currentState.PositionOffset;
 
-        if (currentlyAnimating)
+        while (timeAnimated < animationTime)
         {
+            yield return null;
             timeAnimated += Time.deltaTime;
-
-            if (timeAnimated > animationTime) 
-            {
-                currentlyAnimating = false;
-            }
+            MovableTransform.localPosition = Vector3.Lerp(startPos, endPos, timeAnimated / animationTime);
         }
+
+        MovableTransform.localPosition = endPos;
+        currentlyAnimating = false;
     }
+
 
 }

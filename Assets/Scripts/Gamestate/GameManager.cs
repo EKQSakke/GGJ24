@@ -173,6 +173,7 @@ public class GameManager : Singleton<GameManager>
     {
         DayOverUI.SetActive(setTo);
     }
+
 }
 
 [Serializable]

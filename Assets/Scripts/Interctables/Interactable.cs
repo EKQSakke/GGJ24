@@ -21,7 +21,7 @@ public class Interactable : MonoBehaviour
     protected bool hovering;
     protected UsableItemData myData;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Initialize();
     }
