@@ -28,13 +28,12 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
 
     public void ShowText(string input, NPC speaker)
     {
-        Debug.Log($"Showing text {speaker.name}");
         if (currentRoutine != null)
         {
             StopCoroutine(currentRoutine);
         }
         text.text = "";
-        speakerText.text = speaker.name;
+        speakerText.text = speaker.data.name;
         currentRoutine = StartCoroutine(DrawText(input));
     }
 
