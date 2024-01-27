@@ -27,7 +27,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
             return;
         }
 
-        Debug.LogError($"No cutscene for index {index}");
+        Debug.Log($"No cutscene for index {index}");
+        PlayCutscene(cutscenes[0]);
     }
 
     public void PlayCutscene(string sceneName)
