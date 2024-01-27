@@ -80,8 +80,6 @@ public class NPCSpawner : MonoBehaviour
         }
 
         NPCs.RemoveAt(0);
-
-        Debug.Log("im here");
         AdvanceNextNPC();
     }
 
