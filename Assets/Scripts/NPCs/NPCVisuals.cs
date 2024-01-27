@@ -22,7 +22,8 @@ public class NPCVisuals : MonoBehaviour
         }
 
         CreateRandomLook();
-        HeadRenderer.sprite = GameManager.GameSettings.Heads.GetRandomElementFromList();
+        HeadRenderer.sprite = myLook.BaseHead;
+        BodyRenderer.sprite = myLook.Body;
         SetMood(NPCMood.Neutral);
     }
 
@@ -52,6 +53,7 @@ public class NPCVisuals : MonoBehaviour
     {
         myLook = new RandomNPCLooks();
         myLook.BaseHead = GameManager.GameSettings.Heads.GetRandomElementFromList();
+        myLook.Body = GameManager.GameSettings.Bodies.GetRandomElementFromList();
 
         myLook.NeutralLook = GameManager.GameSettings.NeutralSprites.GiveRandomSprites();
         myLook.AngryLook = GameManager.GameSettings.AngrySprites.GiveRandomSprites();
