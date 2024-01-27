@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        GameData.LoadDataFiles();        
+        GameData.LoadDataFiles();
     }
 
     private void Start()
@@ -65,7 +65,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             UpdateGameState();
-        }        
+        }
     }
 
     #region Round handling
@@ -135,13 +135,14 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            SetDayOverUI(true);
+            CutsceneManager.Instance.PlayCutscene(currentGameRound - 1);
+            //SetDayOverUI(true);
         }
     }
 
     private void UpdateGameState()
     {
-        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;        
+        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;
         ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * Time.deltaTime);
     }
 

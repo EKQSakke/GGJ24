@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Cutscene/Sakke_Cutscene_Test1.unity
+    path: Assets/Scenes/Sakke_GameScene.unity
+    guid: 79f25a05a1747fa4a932653924a7fe44
+  - enabled: 1
+    path: Assets/Scenes/Cutscene/Cutscene_Test1.unity
     guid: 703c78d46ea2853489127dce51c72df5
   - enabled: 1
-    path: Assets/Scenes/Cutscene/Sakke_CutsceneManager.unity
-    guid: 08aa2f1e2b8990449a2658b4eac44752
+    path: Assets/Scenes/Cutscene/Cutscene_Test2.unity
+    guid: e436d12ea6182644a9829322f089e4f9
+  - enabled: 1
+    path: Assets/Scenes/Cutscene/Cutscene_Test3.unity
+    guid: 2f5cb4ba483d12d44bed0a8cb0e90e9a
   m_configObjects: {}
