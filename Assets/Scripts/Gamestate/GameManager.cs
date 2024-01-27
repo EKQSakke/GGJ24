@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public static Action RoundStart;
+    public static Action RoundOver;
+
     [Header("Game settings")]
     public List<GameRoundSettings> GameRounds = new List<GameRoundSettings>();
 
@@ -89,12 +93,15 @@ public class GameManager : Singleton<GameManager>
         Cursor.visible = false;
 
         GameCurrentlyActive = true;
+        RoundStart?.Invoke();
     }
 
     private void EndCurrentRound()
     {
         Debug.Log("Ending game round: " + currentGameRound);
         currentGameRound++;
+
+        RoundOver?.Invoke();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

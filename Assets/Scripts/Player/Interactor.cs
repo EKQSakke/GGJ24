@@ -16,6 +16,7 @@ public class Interactor : MonoBehaviour
     [Space]
     [SerializeField] private LayerMask interactableLayers;
     [SerializeField] private float interactorDistance = 3f;
+    [SerializeField] private bool holdInteractionMode = true;
 
     [Header("Events")]
     [SerializeField] private UnityEvent<Interactable, Interactor> onInteractStart; public UnityEvent<Interactable, Interactor> OnInteractStart { get { return onInteractStart; } }
@@ -66,19 +67,26 @@ public class Interactor : MonoBehaviour
 
     public void StartInteraction()
     {
-        if (interacting || hoverInteractables.Count == 0)
-            return;
+        if (this.holdInteractionMode && this.interactable != null)
+        {
+            StopInteraction();
+        }
+        else
+        {
+            if (interacting || hoverInteractables.Count == 0)
+                return;
 
-        interacting = true;
-        interactable = hoverInteractables[0];
-        interactable.InteractStart(this, interactableHolder);
+            interacting = true;
+            interactable = hoverInteractables[0];
+            interactable.InteractStart(this, interactableHolder);
 
-        if (interactableHolderMoveRoutine != null)
-            StopCoroutine(interactableHolderMoveRoutine);
-        if (gameObject.activeInHierarchy)
-            interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
+            if (interactableHolderMoveRoutine != null)
+                StopCoroutine(interactableHolderMoveRoutine);
+            if (gameObject.activeInHierarchy)
+                interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
 
-        onInteractStart.Invoke(interactable, this);
+            onInteractStart.Invoke(interactable, this);
+        }
     }
 
     public void EndInteraction()
@@ -86,6 +94,14 @@ public class Interactor : MonoBehaviour
         if (!interacting || interactable == null)
             return;
 
+        if (this.holdInteractionMode == false)
+        {
+            StopInteraction();
+        }
+    }
+
+    private void StopInteraction()
+    {
         interacting = false;
         interactable.InteractEnd(this);
         interactable = null;
@@ -109,4 +125,5 @@ public class Interactor : MonoBehaviour
             yield return null;
         }
     }
+
 }
