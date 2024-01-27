@@ -15,6 +15,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private UnityEvent<Interactable, Interactor> onInteractEnd; public UnityEvent<Interactable, Interactor> OnInteractEnd { get { return onInteractEnd; } }
     [SerializeField] private UnityEvent<Interactable, Interactor> onHoverStart; public UnityEvent<Interactable, Interactor> OnHoverStart { get { return onHoverStart; } }
     [SerializeField] private UnityEvent<Interactable, Interactor> onHoverEnd; public UnityEvent<Interactable, Interactor> OnHoverEnd { get { return onHoverEnd; } }
+    [SerializeField] private UnityEvent<Interactable, Interactable> onUsedOnMe; public UnityEvent<Interactable, Interactable> OnUsedOnMe { get { return onUsedOnMe; } }
 
     protected Transform originalParent;
     protected bool interacting;
@@ -97,6 +98,8 @@ public class Interactable : MonoBehaviour
     public virtual void InteractableUsedOnMe(Interactable interactable)
     {
         Debug.Log("Interactable | " + interactable.gameObject.name + ": Used on me: " + gameObject.name);
+
+        onUsedOnMe.Invoke(this, interactable);
     }
 
     private void ParentInteractable(Transform parent)

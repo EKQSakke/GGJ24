@@ -8,6 +8,8 @@ public class DynamicMusicPlayer : MonoBehaviour
     [SerializeField] private AudioSource overlayPlayer;
     [SerializeField] private bool playOnStart = true;
     [SerializeField] private bool loopMusic = true;
+
+    [SerializeField, Range(0f, 1f)] private float baseVolume = 0.5f;
     [SerializeField] private AnimationCurve overlayBlendCurve;
     
     private bool isPlaying;
@@ -36,6 +38,7 @@ public class DynamicMusicPlayer : MonoBehaviour
         isPlaying = true;
         basePlayer.loop = true;
         overlayPlayer.loop = true;
+        basePlayer.volume = baseVolume;
         basePlayer.Play();
         overlayPlayer.Play();
 

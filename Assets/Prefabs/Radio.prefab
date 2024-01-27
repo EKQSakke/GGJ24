@@ -53,6 +53,7 @@ MonoBehaviour:
   overlayPlayer: {fileID: 4154408673914990631}
   playOnStart: 1
   loopMusic: 1
+  baseVolume: 0.2
   overlayBlendCurve:
     serializedVersion: 2
     m_Curve:
@@ -67,7 +68,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 0.7
+      value: 0.06
       inSlope: 0
       outSlope: 0
       tangentMode: 0
