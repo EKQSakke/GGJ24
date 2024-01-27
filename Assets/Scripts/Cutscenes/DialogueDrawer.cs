@@ -13,6 +13,8 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
     [SerializeField]
     float emptyDelay = 3;
 
+    Coroutine currentRoutine;
+
     private void Awake()
     {
         if (CreateSingleton(this, SetDontDestroy) == true)
@@ -21,9 +23,11 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
         }
     }
 
-    public void ShowText(string text)
+    public void ShowText(string input)
     {
-        StartCoroutine(DrawText(text));
+        StopCoroutine(currentRoutine);
+        text.text = "";
+        currentRoutine = StartCoroutine(DrawText(input));
     }
 
     IEnumerator DrawText(string textInput)
