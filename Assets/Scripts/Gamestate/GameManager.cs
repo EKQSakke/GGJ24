@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
@@ -32,7 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
 
-    private int currentGameRound = 0;
+    private int currentGameRound = 0; public int CurrentGameRound { get { return currentGameRound; } }
     private float currentRoundTime = 0;
     private float currentStressLevel = 0;
 
@@ -182,4 +183,5 @@ public class GameRoundSettings
     public bool UseNPCDropArea = true;
     public List<UsableItemSpawner> UsedSpawnersForRound;
     public List<UsableItemData> ItemsToSpawn;
+    public DayRules DayRules;
 }

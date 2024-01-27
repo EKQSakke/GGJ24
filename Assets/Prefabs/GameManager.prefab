@@ -1306,11 +1306,18 @@ MonoBehaviour:
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
     UseNPCDropArea: 0
+    UsedSpawnersForRound: []
+    ItemsToSpawn: []
+    DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
   - TimeInSeconds: 60
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
     UseNPCDropArea: 1
+    UsedSpawnersForRound: []
+    ItemsToSpawn: []
+    DayRules: {fileID: 11400000, guid: cf826b5c6f2a4b74ba8c442e1d8dc338, type: 2}
   QueSpawner: {fileID: 0}
+  QueMover: {fileID: 0}
   ItemSpawners: []
   GameClock: {fileID: 5163546416575744013}
   StressLevel: {fileID: 7267372273202515881}
