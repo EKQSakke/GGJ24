@@ -16,30 +16,20 @@ public class NPCSpawner : MonoBehaviour
     Vector3 spawnLocation = Vector3.zero;
     [SerializeField]
     float distanceToNextNPC = 2f;
-    
-    private void Awake()
-    {
-        PopulateList();
-    }
+
     // Start is called before the first frame update
     private void Start()
-    {
-        SpawnNPCs();
-    }
-    void PopulateList()
-    {
-        string[] assetNames = AssetDatabase.FindAssets("NPC", new[] { "Assets/GameDataObjects/NPC" });
-        NPCDatas.Clear();
-        foreach (string SOName in assetNames)
-        {
-            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
-            var character = AssetDatabase.LoadAssetAtPath<NPCData>(SOpath);
-            NPCDatas.Add(character);
-        }
+    {      
+        if (GameManager.Instance == null)
+            SpawnNPCs();
     }
 
-    void SpawnNPCs()
+    public void SpawnNPCs()
     {
+        if (NPCDatas.IsEmpty())
+            NPCDatas = GameData.GetAll<NPCData>();
+
+        ClearQueue();
         int positionInQueue = 1;
 
         foreach (NPCData data in NPCDatas)
@@ -53,16 +43,41 @@ public class NPCSpawner : MonoBehaviour
         }
     }
 
+    public void ClearQueue()
+    {
+        foreach (var item in NPCs)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        NPCs.Clear();
+    }
+
+    public void UseItemOnCurrentNPC(UsableItemData itemUsed)
+    {
+        if (NPCs.IsEmpty())
+            return;
+
+        Debug.Log("im here");
+        AdvanceNextNPC();
+    }
+
+    private void AdvanceNextNPC()
+    {
+        foreach (var item in NPCs)
+        {
+            item.AdvanceQueue();
+        }
+        
+        NPCs.RemoveAt(0);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            foreach (var item in NPCs)
-            {
-                if (item != null)
-                item.AdvanceQueue();
-            }
-        }
-        
+            AdvanceNextNPC();
+        }        
     }
 }

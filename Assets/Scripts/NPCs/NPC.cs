@@ -49,6 +49,7 @@ public class NPC : MonoBehaviour
         state = State.Happy;
         AdvanceQueue();
     }
+
     private void GetMad()
     {
         state = State.Mad;

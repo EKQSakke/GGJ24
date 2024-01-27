@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public List<GameRoundSettings> GameRounds = new List<GameRoundSettings>();
 
     [Header("References")]
+    public NPCSpawner QueSpawner;
     public List<UsableItemSpawner> ItemSpawners;
     public Image GameClock;
     public Slider StressLevel;
@@ -38,6 +39,11 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        GameData.LoadDataFiles();        
+    }
+
+    private void Start()
+    {
         StartNewGame();
     }
 
@@ -90,6 +96,8 @@ public class GameManager : Singleton<GameManager>
         {
             spawner.CreateItems(items);
         }
+
+        QueSpawner.SpawnNPCs();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

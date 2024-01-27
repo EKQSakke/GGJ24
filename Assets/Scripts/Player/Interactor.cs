@@ -42,13 +42,12 @@ public class Interactor : MonoBehaviour
 
         if (!interacting)
         {
-            if (Physics.Raycast(interactorBase.position, interactorBase.forward, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+            Interactable interactable = ScanForInteractable();
+
+            if (interactable != null)
             {
-                if (rayhit.collider.TryGetComponent(out Interactable interactable))
-                {
-                    hoverInteractables.Add(interactable);
-                    interactable.HoverStart(this);
-                }
+                hoverInteractables.Add(interactable);
+                interactable.HoverStart(this);
             }
         }
     }
@@ -113,11 +112,34 @@ public class Interactor : MonoBehaviour
 
     private void StopInteraction()
     {
+        if (interactable.InteractionType == InteractionMode.Drag)
+        {
+            Interactable hoverTarget = ScanForInteractable();
+
+            if (hoverTarget != null)
+            {
+                hoverTarget.InteractableUsedOnMe(interactable);
+            }
+        }
+
         interacting = false;
         interactable.InteractEnd(this);
         interactable = null;
 
         onInteractEnd.Invoke(interactable, this);
+    }
+
+    private Interactable ScanForInteractable()
+    {
+        if (Physics.Raycast(interactorBase.position, interactorBase.forward, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+        {
+            if (rayhit.collider.TryGetComponent(out Interactable interactable))
+            {
+                return interactable;
+            }
+        }
+
+        return null;
     }
 
     IEnumerator InteractableHolderMoveRoutine()

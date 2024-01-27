@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    public InteractionMode InteractionType => myData != null ? myData.InteractionMode : InteractionMode.Drag;
+    public virtual InteractionMode InteractionType => myData != null ? myData.InteractionMode : InteractionMode.Drag;
+    public UsableItemType ItemType => myData != null ? myData.ItemType : UsableItemType.None;
+    public UsableItemData DataObject => myData;
 
     [Header("Events")]
     [SerializeField] private UsableItemData DefaultDataToUse;
@@ -14,10 +16,10 @@ public class Interactable : MonoBehaviour
     [SerializeField] private UnityEvent<Interactable, Interactor> onHoverStart; public UnityEvent<Interactable, Interactor> OnHoverStart { get { return onHoverStart; } }
     [SerializeField] private UnityEvent<Interactable, Interactor> onHoverEnd; public UnityEvent<Interactable, Interactor> OnHoverEnd { get { return onHoverEnd; } }
 
-    private Transform originalParent;
-    private bool interacting;
-    private bool hovering;
-    private UsableItemData myData;
+    protected Transform originalParent;
+    protected bool interacting;
+    protected bool hovering;
+    protected UsableItemData myData;
 
     private void Awake()
     {
@@ -82,6 +84,11 @@ public class Interactable : MonoBehaviour
         interacting = false;
         ParentInteractable(originalParent);
         onInteractEnd.Invoke(this, interactor);
+    }
+
+    public virtual void InteractableUsedOnMe(Interactable interactable)
+    {
+
     }
 
     private void ParentInteractable(Transform parent)
