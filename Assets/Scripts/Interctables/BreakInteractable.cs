@@ -7,8 +7,8 @@ public class BreakInteractable : Interactable
 
     public override void InteractEnd(Interactor interactor)
     {
-        CutsceneManager.Instance.PlayCutscene(0);
         GameManager.Instance?.ChangeStressAmount(-StressRelieved);
+        CutsceneManager.Instance.PlayCutscene(0);
         HoverEnd(interactor);
         gameObject.SetActive(false);
     }
