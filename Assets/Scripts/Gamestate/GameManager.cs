@@ -122,6 +122,13 @@ public class GameManager : Singleton<GameManager>
     private void EndCurrentRound()
     {
         Debug.Log("Ending game round: " + currentGameRound);
+
+        if (currentGameRound == GameRounds.Count - 1)
+        {
+            CutsceneManager.Instance.PlayCutscene("End_Win");
+            return;
+        }
+
         currentGameRound++;
 
         foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
@@ -163,6 +170,7 @@ public class GameManager : Singleton<GameManager>
         if (currentStressLevel > currentRoundSettings.StressThreshold)
         {
             Debug.LogError("STRESSED OUT!");
+            CutsceneManager.Instance.PlayCutscene("End_Loss");
             currentStressLevel = 0f;
         }
 
