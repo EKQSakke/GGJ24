@@ -7,6 +7,7 @@ using UnityEngine.TextCore.Text;
 
 public class NPCSpawner : MonoBehaviour
 {
+    [SerializeField] GameObject interactionParticlePrefab;
     [SerializeField]
     List<NPCData> NPCDatas = new List<NPCData>();
 
@@ -65,9 +66,18 @@ public class NPCSpawner : MonoBehaviour
 
     private void AdvanceNextNPC()
     {
+        if (NPCs.IsEmpty())
+            return;
+
         foreach (var item in NPCs)
         {
             item.AdvanceQueue();
+        }
+
+        if (interactionParticlePrefab != null)
+        {
+            GameObject interactionParticle = Instantiate(interactionParticlePrefab, NPCs[0].transform.position, Quaternion.identity);
+            Destroy(interactionParticle, 2f);
         }
         
         NPCs.RemoveAt(0);
