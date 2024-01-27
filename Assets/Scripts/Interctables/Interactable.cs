@@ -26,6 +26,11 @@ public class Interactable : MonoBehaviour
         Initialize();
     }
     
+    protected virtual void Update()
+    {
+
+    }
+
     private void Initialize()
     {
         originalParent = transform.parent;
@@ -82,7 +87,10 @@ public class Interactable : MonoBehaviour
         Debug.Log("Interactable | " + gameObject.name + ": Interact End");
 
         interacting = false;
-        ParentInteractable(originalParent);
+
+        if (InteractionType == InteractionMode.Drag)
+            ParentInteractable(originalParent);
+
         onInteractEnd.Invoke(this, interactor);
     }
 
