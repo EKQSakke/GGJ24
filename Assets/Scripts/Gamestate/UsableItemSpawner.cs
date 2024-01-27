@@ -5,8 +5,17 @@ using UnityEngine;
 public class UsableItemSpawner : MonoBehaviour
 {
     public List<Transform> ItemSpawnPoints;
+    public Interactable MyInteractable;
 
     private List<GameObject> spawnedItems = new List<GameObject>();
+
+    public void SetSpawnerInteractableState(bool setTo)
+    {
+        if (MyInteractable != null)
+        {
+            MyInteractable.gameObject.SetActive(setTo);
+        }
+    }
     
     public void CreateItems(List<UsableItemData> possibleItems)
     {
@@ -26,6 +35,7 @@ public class UsableItemSpawner : MonoBehaviour
         {
             GameObject newSpawnedItem = Instantiate(itemList[i].Prefab, spawnPoints[i]);
             spawnedItems.Add(newSpawnedItem);
+            possibleItems.Remove(itemList[i]);
         }
     }
 
