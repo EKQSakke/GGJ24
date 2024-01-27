@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
@@ -36,15 +37,27 @@ public class GameManager : Singleton<GameManager>
     {
         if (CreateSingleton(this, SetDontDestroy) == false)
         {
+            Destroy(gameObject);
             return;
         }
 
-        GameData.LoadDataFiles();        
+        GameData.LoadDataFiles();
     }
 
     private void Start()
     {
+        // SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.activeSceneChanged += OnSceneLoaded;
         StartNewGame();
+    }
+
+    void OnSceneLoaded(Scene oldScene, Scene scene)
+    {
+        Debug.Log($"OnSceneLoaded {scene.name}, {oldScene.name}");
+        if (scene.name == "Sakke_GameScene")
+        {
+            StartNewRound();
+        }
     }
 
     // Update is called once per frame
@@ -62,7 +75,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             UpdateGameState();
-        }        
+        }
     }
 
     #region Round handling
@@ -97,6 +110,10 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
+        if (QueSpawner == null) // It's scene object and game manager will leave through multiple scenes
+        {
+            QueSpawner = FindObjectOfType<NPCSpawner>();
+        }
         QueSpawner.SpawnNPCs();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -123,13 +140,14 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            SetDayOverUI(true);
+            CutsceneManager.Instance.PlayCutscene("Sakke_Cutscene_Test1");
+            //SetDayOverUI(true);
         }
     }
 
     private void UpdateGameState()
     {
-        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;        
+        GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;
         ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * Time.deltaTime);
     }
 

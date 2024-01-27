@@ -1,8 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CutsceneManager : Singleton<CutsceneManager>
 {
+    public string[] cutscenes = {
+        "Cutscene_Test1",
+        "Cutscene_Test2",
+        "Cutscene_Test3",
+    };
+
+
     string lastSceneName;
 
     private void Awake()
@@ -13,12 +21,14 @@ public class CutsceneManager : Singleton<CutsceneManager>
         }
     }
 
-    void Update()
+    public void PlayCutscene(int index)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (index < cutscenes.Length)
         {
-            PlayCutscene("Sakke_Cutscene_Test1");
+            PlayCutscene(cutscenes[index]);
         }
+
+        Debug.LogError($"Now cutscene for index {index}");
     }
 
     public void PlayCutscene(string sceneName)
