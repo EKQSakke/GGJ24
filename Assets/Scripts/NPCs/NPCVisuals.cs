@@ -12,9 +12,15 @@ public class NPCVisuals : MonoBehaviour
     public SpriteRenderer NouseRenderer;
         
     private RandomNPCLooks myLook;
+    private Vector3? defaultScale;
 
     public void SetupVisuals()
     {
+        if (defaultScale == null)
+        {
+            defaultScale = transform.localScale;
+        }
+
         CreateRandomLook();
         HeadRenderer.sprite = GameManager.GameSettings.Heads.GetRandomElementFromList();
         SetMood(NPCMood.Neutral);
@@ -50,6 +56,9 @@ public class NPCVisuals : MonoBehaviour
         myLook.NeutralLook = GameManager.GameSettings.NeutralSprites.GiveRandomSprites();
         myLook.AngryLook = GameManager.GameSettings.AngrySprites.GiveRandomSprites();
         myLook.HappyLook = GameManager.GameSettings.HappySprites.GiveRandomSprites();
+
+        float randomScaler = Random.Range(-GameManager.GameSettings.NPCScaleVariance, GameManager.GameSettings.NPCScaleVariance);
+        transform.localScale = (Vector3)defaultScale + new Vector3(randomScaler, randomScaler, randomScaler);
     }
 
 }

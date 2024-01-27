@@ -11,6 +11,7 @@ public class BasicGameSettings : ScriptableObject
     public NPCMoodSprites HappySprites;
     public NPCMoodSprites AngrySprites;
     public List<Sprite> Heads;
+    public float NPCScaleVariance = 0.15f;
 
 }
 
