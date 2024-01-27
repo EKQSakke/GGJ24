@@ -580,6 +580,7 @@ MonoBehaviour:
   - {fileID: 7123874723506925739}
   - {fileID: 5741776522664641765}
   discardPoint: {fileID: 5346321503709653787}
+  queueMoveDelay: 2
   moveStepCurve:
     serializedVersion: 2
     m_Curve:

@@ -17,7 +17,8 @@ public class NPCMover : MonoBehaviour
     [SerializeField] private Transform[] path;
     [SerializeField] private Transform discardPoint;
 
-    [Space]
+    [Header("Visual Feedback")]
+    [SerializeField, Min(0f)] private float queueMoveDelay = 2f;
     [SerializeField] private AnimationCurve moveStepCurve;
     [SerializeField] private AnimationCurve rotationCurve;
 
@@ -87,6 +88,8 @@ public class NPCMover : MonoBehaviour
 
     IEnumerator MoveQueueRoutine()
     {
+        yield return new WaitForSeconds(queueMoveDelay);
+
         float timer = 0f, evaluatedValue = 0f;
         float duration = moveStepCurve.keys[moveStepCurve.length - 1].time;
         Vector3 startPosition, endPosition;

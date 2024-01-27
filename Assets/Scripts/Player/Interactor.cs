@@ -5,13 +5,15 @@ using UnityEngine.Events;
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private Transform interactorBase;
-    
+    [SerializeField] private Camera interactorCamera;
+    [SerializeField] private RectTransform interactorCrosshair;
+
     [Space]
     [SerializeField] private Transform interactableHolder;
     [SerializeField] private Transform interactableHolderStart;
     [SerializeField] private Transform interactableHolderEnd;
     [SerializeField] private AnimationCurve interactableHolderCurve;
+    [SerializeField] private float interactorResetDuration = 0.2f;
 
     [Space]
     [SerializeField] private LayerMask interactableLayers;
@@ -29,6 +31,7 @@ public class Interactor : MonoBehaviour
     private Interactable interactable;
 
     private Coroutine interactableHolderMoveRoutine;
+    private Coroutine interactableHolderResetRoutine;
 
     void Update()
     {
@@ -95,7 +98,7 @@ public class Interactor : MonoBehaviour
                     interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
 
                 onInteractStart.Invoke(interactable, this);
-            }            
+            }
         }
     }
 
@@ -126,12 +129,19 @@ public class Interactor : MonoBehaviour
         interactable.InteractEnd(this);
         interactable = null;
 
+        if (interactableHolderResetRoutine != null)
+            StopCoroutine(interactableHolderResetRoutine);
+        if (gameObject.activeInHierarchy)
+            interactableHolderResetRoutine = StartCoroutine(InteractableHolderResetRoutine());
+
         onInteractEnd.Invoke(interactable, this);
     }
 
     private Interactable ScanForInteractable()
     {
-        if (Physics.Raycast(interactorBase.position, interactorBase.forward, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+        Ray ray = interactorCamera.ScreenPointToRay(interactorCrosshair.position);
+
+        if (Physics.Raycast(ray, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
         {
             if (rayhit.collider.TryGetComponent(out Interactable interactable))
             {
@@ -155,6 +165,17 @@ public class Interactor : MonoBehaviour
             interactableHolder.rotation = Quaternion.LerpUnclamped(interactableHolderStart.rotation, interactableHolderEnd.rotation, evaluatedValue);
 
             timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    IEnumerator InteractableHolderResetRoutine()
+    {
+        Vector3 velocity = Vector3.zero;
+
+        while (interactableHolder.position != interactableHolderStart.position)
+        {
+            interactableHolder.position = Vector3.SmoothDamp(interactableHolder.position, interactableHolderStart.position, ref velocity, interactorResetDuration);
             yield return null;
         }
     }
