@@ -17,4 +17,4 @@ MonoBehaviour:
   Name: testName
   City: testCity
   Occupation: testOccupation
-  ItemNeeded: 2
+  ItemNeeded: 5

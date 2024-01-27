@@ -22,5 +22,7 @@ public enum UsableItemType
     None,
     Food,
     Drug,
-    Coffee
+    Coffee,
+    YesStamp,
+    NoStamp
 }

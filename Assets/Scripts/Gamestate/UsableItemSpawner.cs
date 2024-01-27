@@ -5,14 +5,28 @@ using UnityEngine;
 public class UsableItemSpawner : MonoBehaviour
 {
     public List<Transform> ItemSpawnPoints;
+    public InteractableContainer MyInteractable;
 
-    private List<GameObject> spawnedItems = new List<GameObject>();
+    private List<Interactable> spawnedItems = new List<Interactable>();
+
+    private void Start()
+    {
+        MyInteractable.ContainerStateChanged += StateChanged;
+    }
+
+    public void SetSpawnerInteractableState(bool setTo)
+    {
+        if (MyInteractable != null)
+        {
+            MyInteractable.gameObject.SetActive(setTo);
+        }
+    }
     
     public void CreateItems(List<UsableItemData> possibleItems)
     {
-        foreach (GameObject item in spawnedItems)
+        foreach (Interactable item in spawnedItems)
         {
-            Destroy(item);
+            Destroy(item.gameObject);
         }
 
         spawnedItems.Clear();
@@ -24,8 +38,19 @@ public class UsableItemSpawner : MonoBehaviour
          
         for (int i = 0; i < spawnPoints.Count && i < possibleItems.Count; i++)
         {
-            GameObject newSpawnedItem = Instantiate(itemList[i].Prefab, spawnPoints[i]);
-            spawnedItems.Add(newSpawnedItem);
+            GameObject newSpawnedItem = Instantiate(itemList[i].Prefab, spawnPoints[i], false);
+            spawnedItems.Add(newSpawnedItem.GetComponent<Interactable>());
+            possibleItems.Remove(itemList[i]);
+        }
+
+        StateChanged();
+    }
+
+    private void StateChanged()
+    {
+        foreach (Interactable item in spawnedItems)
+        {
+            item.gameObject.SetActive(MyInteractable.ContainerInteractablesAreEnabled);
         }
     }
 

@@ -3,7 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneManager : Singleton<CutsceneManager>
 {
-    string lastSceneName;
+    public string[] cutscenes = {
+        "Cutscene_Test1",
+        "Cutscene_Test2",
+        "Cutscene_Test3",
+    };
+
+    string cutsceneName;
 
     private void Awake()
     {
@@ -13,23 +19,26 @@ public class CutsceneManager : Singleton<CutsceneManager>
         }
     }
 
-    void Update()
+    public void PlayCutscene(int index)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (index < cutscenes.Length)
         {
-            PlayCutscene("Sakke_Cutscene_Test1");
+            PlayCutscene(cutscenes[index]);
+            return;
         }
+
+        Debug.LogError($"No cutscene for index {index}");
     }
 
     public void PlayCutscene(string sceneName)
     {
-        lastSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        cutsceneName = sceneName;
+        SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
     }
 
-    public void ReturnToLastScene()
+    public void ReturnToGame()
     {
-        SceneManager.LoadScene(lastSceneName);
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName)).completed += (_) => GameManager.Instance.StartNewRound();
     }
 }
 
