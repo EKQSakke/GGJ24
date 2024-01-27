@@ -8,6 +8,7 @@ public class NPCMover : MonoBehaviour
     [System.Serializable]
     private class QueueMover
     {
+        public NPC npc;
         public Transform mover;
         public int currentQueuePointIndex;
     }
@@ -16,25 +17,34 @@ public class NPCMover : MonoBehaviour
     [SerializeField] private Transform discardPoint;
 
     [Space]
-    [SerializeField] private List<Transform> movers = new List<Transform>();
+    [SerializeField] private NPCSpawner spawner;
     [SerializeField] private AnimationCurve moveStepCurve;
 
     [Header("Read Only")]
     [SerializeField] private List<QueueMover> queueMovers;
+
+    public int AmountOfQueuePoints { get { return path == null ? 0 : path.Length; } }
 
     void OnValidate()
     {
         NamePathPoints();
     }
 
-    void Awake()
+    void OnEnable()
     {
-        CreateQueueMovers();
+        NPCSpawner.onSpawned += CreateQueueMovers;
+        NPC.onNPCItemUsed += NPCItemUsed;
     }
 
-    void CreateQueueMovers()
+    void OnDisable()
     {
-        if (path.Length < movers.Count)
+        NPCSpawner.onSpawned -= CreateQueueMovers;
+        NPC.onNPCItemUsed -= NPCItemUsed;
+    }
+
+    void CreateQueueMovers(List<NPC> npcs)
+    {
+        if (path.Length < npcs.Count)
         {
             Debug.LogError("Not enough path points for movers!");
             return;
@@ -42,20 +52,23 @@ public class NPCMover : MonoBehaviour
 
         queueMovers = new List<QueueMover>();
 
-        for (int i = 0; i < movers.Count; i++)
+        for (int i = 0; i < npcs.Count; i++)
         {
-            if (movers[i] == null)
+            if (npcs[i] == null)
                 continue;
 
             queueMovers.Add(new QueueMover
             {
-                mover = movers[i],
+                npc = npcs[i],
+                mover = npcs[i].transform,
                 currentQueuePointIndex = i
             });
 
-            movers[i].position = path[i].position;
+            npcs[i].transform.position = path[i].position;
         }
     }
+
+    void NPCItemUsed(NPC npc) => MoveQueue();
 
     void Update()
     {
@@ -101,10 +114,27 @@ public class NPCMover : MonoBehaviour
             yield return null;
         }
 
+        CompleteQueueMovement();
+    }
+
+    void CompleteQueueMovement()
+    {
         for (int i = 0; i < queueMovers.Count; i++)
         {
             queueMovers[i].currentQueuePointIndex++;
+
+            if (queueMovers[i].currentQueuePointIndex == path.Length - 1)
+                queueMovers[i].npc.AtDesk();
+            else if (queueMovers[i].currentQueuePointIndex == path.Length)
+                ResetQueuePosition(queueMovers[i]);
         }
+    }
+
+    void ResetQueuePosition(QueueMover queueMover)
+    {
+        queueMover.currentQueuePointIndex = 0;
+        queueMover.mover.position = path[0].position;
+        queueMover.npc.BackToQueue();
     }
 
     void OnDrawGizmos()

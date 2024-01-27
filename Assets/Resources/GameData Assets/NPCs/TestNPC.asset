@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Active: 1
   NPCPrefab: {fileID: 4506037314493391649, guid: fafeba73dbbc7684f8f589904293e521, type: 3}
+  InteractionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
+  BadInteractionParticlePrefab: {fileID: 7778863314175787918, guid: bd5bf8ac9209b0c40bfad51dbe54aad3, type: 3}
   Name: testName
   City: testCity
   Occupation: testOccupation

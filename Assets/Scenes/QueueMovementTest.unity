@@ -166,12 +166,7 @@ MonoBehaviour:
   - {fileID: 179123666}
   - {fileID: 1838525457}
   discardPoint: {fileID: 1519242100}
-  movers:
-  - {fileID: 1432348883}
-  - {fileID: 1723982933}
-  - {fileID: 1623939095}
-  - {fileID: 1246542277}
-  - {fileID: 1382394857}
+  spawner: {fileID: 1330757007}
   moveStepCurve:
     serializedVersion: 2
     m_Curve:
@@ -853,6 +848,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246542276}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1330757006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1330757008}
+  - component: {fileID: 1330757007}
+  m_Layer: 0
+  m_Name: NPCSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1330757007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330757006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c126cdd5ab1d9428f9d54b216e5324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 88013845}
+  interactionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
+  badInteractionParticlePrefab: {fileID: 7778863314175787918, guid: bd5bf8ac9209b0c40bfad51dbe54aad3, type: 3}
+  NPCDatas: []
+  spawnLocation: {x: 0, y: 1.4, z: 2.161}
+  distanceToNextNPC: 2
+  onSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1330757008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330757006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.38, y: 0, z: 3.234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1382394856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1512801512
 Transform:
   m_ObjectHideFlags: 0
@@ -2030,3 +2078,4 @@ SceneRoots:
   - {fileID: 1429034126}
   - {fileID: 1408168816}
   - {fileID: 88013846}
+  - {fileID: 1330757008}

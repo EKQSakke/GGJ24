@@ -6,6 +6,8 @@ using UnityEngine;
 public class NPCData : GameData
 {
     public GameObject NPCPrefab;
+    public GameObject InteractionParticlePrefab;
+    public GameObject BadInteractionParticlePrefab;
     public string Name;
     public string City;
     public string Occupation;
