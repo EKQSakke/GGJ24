@@ -144,3 +144,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   NPCScaleVariance: 0.05
+  CustomerVoiceClips:
+  - {fileID: 8300000, guid: c58c664dd4f819f45a045624e25a5907, type: 3}
+  - {fileID: 8300000, guid: 0ec41c4696b32e44f83430cf7fab03dd, type: 3}
+  - {fileID: 8300000, guid: b28d1150c9ff94746b39ec7743329902, type: 3}
+  - {fileID: 8300000, guid: 8f5b4a76dcff6ad44aa776f39ceb4632, type: 3}
+  - {fileID: 8300000, guid: 27b4591c3a6c31c4193e7577f807c0eb, type: 3}
+  - {fileID: 8300000, guid: cb62b9cae0145834aa82807adc5a07d0, type: 3}
+  - {fileID: 8300000, guid: 9e00bed4f59026d49a8524f35ee6e67d, type: 3}
+  - {fileID: 8300000, guid: 247ac95fb8839704da74e6a24c3b34e2, type: 3}
+  - {fileID: 8300000, guid: 7aee9567fd3499b43b3ebe1a3026ecd9, type: 3}
+  - {fileID: 8300000, guid: 9437053dd89fdf34c9b6d8b61aed786c, type: 3}
+  - {fileID: 8300000, guid: b81d4e9fa6d68634db7a835f89bd1bc6, type: 3}
+  - {fileID: 8300000, guid: da80f7e5bd2f51b41bd429fadb999202, type: 3}
+  - {fileID: 8300000, guid: a148fd7384c6be641baf16e5ff94c1cd, type: 3}
+  - {fileID: 8300000, guid: 5b492bd6a63ad9b4a8c6c5c1596eb394, type: 3}
+  - {fileID: 8300000, guid: 1acd1eefb03a0e240b29f7908cdf4638, type: 3}
+  - {fileID: 8300000, guid: 9809b468d6f1a984694c1146f070c493, type: 3}
+  - {fileID: 8300000, guid: 16453ef72b594b44788313369fd8d85b, type: 3}
+  - {fileID: 8300000, guid: c43b79cd0e986484ea5dae52feed37d0, type: 3}
+  - {fileID: 8300000, guid: 14e250694fe2fee49aa68beeda7d9fbc, type: 3}
+  - {fileID: 8300000, guid: 0e00a2caabacb954f85b39b8aadef2f4, type: 3}
+  - {fileID: 8300000, guid: 57acde54af9104344beab94204a48b68, type: 3}
+  - {fileID: 8300000, guid: 069b003ec3b565b4a83ce647be391af1, type: 3}

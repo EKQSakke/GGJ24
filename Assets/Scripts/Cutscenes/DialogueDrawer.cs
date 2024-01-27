@@ -16,6 +16,9 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
     [SerializeField]
     float emptyDelay = 3;
 
+    [SerializeField]
+    AudioSource speakingAudioSource;
+
     Coroutine currentRoutine;
 
     private void Awake()
@@ -32,9 +35,18 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
         {
             StopCoroutine(currentRoutine);
         }
+
         text.text = "";
         speakerText.text = speaker.data.name;
-        currentRoutine = StartCoroutine(DrawText(input));
+
+        AudioClip npcSound = null;
+
+        if (GameManager.Instance != null)
+        {
+            npcSound = GameManager.GameSettings.CustomerVoiceClips.GetRandomElementFromList();
+        }
+
+        currentRoutine = StartCoroutine(DrawText(input, npcSound));
     }
 
     public void ShowText(string input) {
@@ -47,16 +59,36 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
         currentRoutine = StartCoroutine(DrawText(input));
     }
 
-    IEnumerator DrawText(string textInput)
+    IEnumerator DrawText(string textInput, AudioClip textAudio = null)
     {
+        if (speakingAudioSource  != null)
+        {
+            if (textAudio != null)
+            {
+                speakingAudioSource.clip = textAudio;
+                speakingAudioSource.loop = true;
+                speakingAudioSource.Play();
+            }
+            else
+            {
+                speakingAudioSource.Stop();
+            }
+        }
+
         for (int i = 0; i < textInput.Length; i++)
         {
             text.text += textInput[i];
             yield return new WaitForSeconds(timePerCharacter);
         }
 
+        if (speakingAudioSource != null)
+        {
+            speakingAudioSource.loop = false;
+        }
+
         yield return new WaitForSeconds(emptyDelay);
         text.text = "";
         speakerText.text = "";
     }
+
 }
