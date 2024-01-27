@@ -32,6 +32,7 @@ public class NPCSpawner : MonoBehaviour
         {
             NPCData data = NPCDatas.GetRandomElementFromList();
             NPC nPC = Instantiate(data.NPCPrefab).GetComponent<NPC>();
+            nPC.CreateRandomVisuals();
             NPCs.Add(nPC);
             nPC.data = data;
 

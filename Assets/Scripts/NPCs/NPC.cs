@@ -18,6 +18,7 @@ public class NPC : MonoBehaviour
     }
 
     [SerializeField] private State state;
+    [SerializeField] private NPCVisuals VisualScript;
 
     //public int positionInQueue;
     private float step = 2f;
@@ -33,6 +34,8 @@ public class NPC : MonoBehaviour
             if (dialogue.name == data.ItemNeeded.ToString())
                 dialogueData = dialogue;
         }
+        
+        SetMood(NPCMood.Neutral);
     }
 
     public void UseItemOnCurrentNPC(UsableItemData itemUsed)
@@ -75,6 +78,12 @@ public class NPC : MonoBehaviour
     public void BackToQueue()
     {
         state = State.inQueue;
+        SetMood(NPCMood.Neutral);
+
+        if (VisualScript != null)
+        {
+            VisualScript.SetupVisuals();
+        }
     }
 
     public void AtDesk()
@@ -82,22 +91,43 @@ public class NPC : MonoBehaviour
         state = State.atDesk;
         currentNPCAtDesk = this;
 
+        SetMood(NPCMood.Neutral);
+
         if (dialogueData != null)
             DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
+    }
+
+    public void CreateRandomVisuals()
+    {
+        if (VisualScript != null)
+        {
+            VisualScript.SetupVisuals();
+        }
     }
 
     private void GetHappy()
     {
         state = State.Happy;
+        SetMood(NPCMood.Happy);
     }
 
     private void GetMad()
     {
         state = State.Mad;
+        SetMood(NPCMood.Angry);
     }
 
     private void MoveForward()
     {
         transform.position += -transform.forward * step;
     }
+
+    private void SetMood(NPCMood mood)
+    {
+        if (VisualScript != null)
+        {
+            VisualScript.SetMood(mood);
+        }
+    }
+
 }
