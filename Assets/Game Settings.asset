@@ -125,3 +125,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d0f1dfaac2cdb3f4b8e0d6597be6fe4d, type: 3}
   - {fileID: 21300000, guid: f09ce58b3e867f64a9dee8b15fa161b9, type: 3}
   - {fileID: 21300000, guid: 2cdffd9daf5f73447a747148c2763fe3, type: 3}
+  NPCScaleVariance: 0.1
