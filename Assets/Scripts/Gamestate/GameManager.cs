@@ -122,6 +122,13 @@ public class GameManager : Singleton<GameManager>
     private void EndCurrentRound()
     {
         Debug.Log("Ending game round: " + currentGameRound);
+
+        if (currentGameRound == GameRounds.Count - 1)
+        {
+            Debug.Log("PLAY END HERE");
+            return;
+        }
+
         currentGameRound++;
 
         foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
