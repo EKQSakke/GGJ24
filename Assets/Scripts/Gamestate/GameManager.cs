@@ -125,7 +125,7 @@ public class GameManager : Singleton<GameManager>
 
         if (currentGameRound == GameRounds.Count - 1)
         {
-            Debug.Log("PLAY END HERE");
+            CutsceneManager.Instance.PlayCutscene("End_Win");
             return;
         }
 
@@ -170,6 +170,7 @@ public class GameManager : Singleton<GameManager>
         if (currentStressLevel > currentRoundSettings.StressThreshold)
         {
             Debug.LogError("STRESSED OUT!");
+            CutsceneManager.Instance.PlayCutscene("End_Loss");
             currentStressLevel = 0f;
         }
 
