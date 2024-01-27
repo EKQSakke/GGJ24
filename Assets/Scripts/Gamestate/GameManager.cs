@@ -85,6 +85,9 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         GameCurrentlyActive = true;
     }
 
@@ -92,6 +95,9 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Ending game round: " + currentGameRound);
         currentGameRound++;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (currentGameRound >= GameRounds.Count)
         {

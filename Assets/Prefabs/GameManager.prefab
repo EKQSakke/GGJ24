@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetDontDestroy: 1
   GameRounds:
-  - TimeInSeconds: 5
+  - TimeInSeconds: 60
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
   - TimeInSeconds: 60

@@ -12,6 +12,9 @@ public class PlayerLook : MonoBehaviour
 
     public void RotateLook(Vector2 rotationDelta)
     {
+        if (GameManager.Instance != null && GameManager.Instance.GameCurrentlyActive == false)
+            return;
+
         rotation.y += rotationDelta.x * lookSpeed;
         rotation.x += -rotationDelta.y * lookSpeed;
         
@@ -20,4 +23,5 @@ public class PlayerLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, 0);
     }
+
 }
