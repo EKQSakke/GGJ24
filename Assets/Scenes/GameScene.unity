@@ -2012,6 +2012,10 @@ PrefabInstance:
       propertyPath: interactableLayers.m_Bits
       value: 1048576
       objectReference: {fileID: 0}
+    - target: {fileID: 3614890712854504708, guid: 92e95acfff51a6c4490f5ed695941686, type: 3}
+      propertyPath: shakeMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3732874154363524519, guid: 92e95acfff51a6c4490f5ed695941686, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
