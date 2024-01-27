@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b71fae31e6c7d438e8566dc713e666, type: 3}
+  m_Name: gs_Keitti
+  m_EditorClassIdentifier: 
+  m_FormatVersion: 20231006
+  m_SplatCount: 1059902
+  m_BoundsMin: {x: -99.9971, y: -99.99879, z: -99.998}
+  m_BoundsMax: {x: 99.99812, y: 99.99705, z: 99.998}
+  m_DataHash:
+    serializedVersion: 2
+    Hash: d648b70dd9dff4617cc662d483eda9d6
+  m_PosFormat: 2
+  m_ScaleFormat: 3
+  m_SHFormat: 8
+  m_ColorFormat: 109
+  m_ColorWidth: 2048
+  m_ColorHeight: 528
+  m_PosData: {fileID: 4900000, guid: ec1d16a7164044044821fdf938220e5f, type: 3}
+  m_ColorData: {fileID: 4900000, guid: 3c6b0d5b824f8c64c981da83247c83e0, type: 3}
+  m_OtherData: {fileID: 4900000, guid: 7ff1e0625fc6f5142b1c6ab189dbb66a, type: 3}
+  m_SHData: {fileID: 4900000, guid: 55e60572ed8f5d4459c5bdde6d74db3f, type: 3}
+  m_ChunkData: {fileID: 4900000, guid: 205e4c8f472aee649a9ce2835945aec8, type: 3}
+  m_Cameras: []
