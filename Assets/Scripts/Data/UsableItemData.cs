@@ -24,5 +24,6 @@ public enum UsableItemType
     Drug,
     Coffee,
     YesStamp,
-    NoStamp
+    NoStamp,
+    Break
 }

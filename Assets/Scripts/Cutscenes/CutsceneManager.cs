@@ -35,11 +35,13 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         cutsceneName = sceneName;
         SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
+        GameManager.Instance.CanGetStress = false;
     }
 
     public void ReturnToGame()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName)).completed += (_) => GameManager.Instance.StartNewRound();
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName));
+        GameManager.Instance.CanGetStress = true;
     }
 }
 

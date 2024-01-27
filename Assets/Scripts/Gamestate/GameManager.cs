@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject NPCDropArea;
 
     internal bool GameCurrentlyActive = false;
+    internal bool CanGetStress = true;
     internal float Stress => currentStressLevel;
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
@@ -135,8 +136,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            CutsceneManager.Instance.PlayCutscene(currentGameRound - 1);
-            //SetDayOverUI(true);
+            SetDayOverUI(true);
         }
     }
 
@@ -150,6 +150,9 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeStressAmount(float changeBy)
     {
+        if (!CanGetStress)
+            return;
+
         currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
 
         if (currentStressLevel > currentRoundSettings.StressThreshold)
@@ -165,7 +168,6 @@ public class GameManager : Singleton<GameManager>
     {
         DayOverUI.SetActive(setTo);
     }
-
 }
 
 [Serializable]
