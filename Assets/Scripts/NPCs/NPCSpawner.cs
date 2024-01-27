@@ -31,7 +31,7 @@ public class NPCSpawner : MonoBehaviour
             NPCDatas = GameData.GetAll<NPCData>();
 
         ClearQueue();
-        int positionInQueue = 1;
+        int positionInQueue = 0;
 
         foreach (NPCData data in NPCDatas)
         {
