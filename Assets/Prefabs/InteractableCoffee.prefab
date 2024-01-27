@@ -187,7 +187,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
   StressRelieved: 0.25
+  CoffeeAmount: 3
 --- !u!1 &7668534434414510949
 GameObject:
   m_ObjectHideFlags: 0
