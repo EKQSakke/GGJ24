@@ -18,11 +18,11 @@ MonoBehaviour:
   m_BoundsMax: {x: 99.99812, y: 99.99705, z: 99.998}
   m_DataHash:
     serializedVersion: 2
-    Hash: 1aaa28f768f16cd1e24916c516e54729
+    Hash: d648b70dd9dff4617cc662d483eda9d6
   m_PosFormat: 2
-  m_ScaleFormat: 2
-  m_SHFormat: 3
-  m_ColorFormat: 8
+  m_ScaleFormat: 3
+  m_SHFormat: 8
+  m_ColorFormat: 109
   m_ColorWidth: 2048
   m_ColorHeight: 528
   m_PosData: {fileID: 4900000, guid: ec1d16a7164044044821fdf938220e5f, type: 3}
