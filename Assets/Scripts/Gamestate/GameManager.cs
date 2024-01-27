@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("References")]
     public NPCSpawner QueSpawner;
+    public NPCMover QueMover;
     public List<UsableItemSpawner> ItemSpawners;
     public Image GameClock;
     public Slider StressLevel;
@@ -101,7 +102,7 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
-        QueSpawner.SpawnNPCs(10);
+        QueSpawner.SpawnNPCs(QueMover.AmountOfQueuePoints);
 
         PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
         NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);

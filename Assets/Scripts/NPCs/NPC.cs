@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    private static NPC currentNPCAtDesk; public static NPC CurrentNPCAtDesk { get { return currentNPCAtDesk; } }
+
+    public delegate void NPCAction(NPC npc);
+    public static event NPCAction onNPCItemUsed;
+
     public NPCData data;
 
     private enum State
@@ -12,30 +17,46 @@ public class NPC : MonoBehaviour
         inQueue, atDesk, Happy, Mad
     }
 
-    private State state;
+    [SerializeField] private State state;
 
-    public int positionInQueue;
+    //public int positionInQueue;
     private float step = 2f;
 
     private NPCDialogueData dialogueData;
 
     private void Start()
     {
-
         List<NPCDialogueData> allData = GameData.GetAll<NPCDialogueData>();
 
         foreach (NPCDialogueData dialogue in allData)
         {
             if (dialogue.name == data.ItemNeeded.ToString())
-            dialogueData = dialogue;
+                dialogueData = dialogue;
         }
-        if (positionInQueue == 0)
+    }
+
+    public void UseItemOnCurrentNPC(UsableItemData itemUsed)
+    {
+        if (ItemGivenToMe(itemUsed))
         {
-            state = State.atDesk;
-            AdvanceQueue();
+            if (data.InteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(data.InteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+        else
+        {
+            if (data.BadInteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(data.BadInteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
         }
 
+        onNPCItemUsed?.Invoke(this);
     }
+
     public bool ItemGivenToMe(UsableItemData item)
     {
         if (item.ItemType == data.ItemNeeded)
@@ -51,46 +72,28 @@ public class NPC : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    public void AdvanceQueue()
+    public void BackToQueue()
     {
-        switch (state)
-        {
-            case State.inQueue:
-                positionInQueue--;
-                MoveForward();
-                if (positionInQueue == 0)
-                {
-                Debug.Log(data.name + "ServiceInProgress");
-                    state = State.atDesk;
-                    AdvanceQueue();
-                }
-                break;
-            case State.atDesk:
-                if (dialogueData != null)
-                DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
-                break;
-            case State.Happy: 
-                Debug.Log("Happy");
-                Destroy(gameObject);
-                break;
-            case State.Mad: 
-                Debug.Log("Mad");
-                Destroy(gameObject);
-                break;
-        }
+        state = State.inQueue;
+    }
+
+    public void AtDesk()
+    {
+        state = State.atDesk;
+        currentNPCAtDesk = this;
+
+        if (dialogueData != null)
+            DialogueDrawer.Instance.ShowText(dialogueData.Dialogue.GetRandomElementFromList());
     }
 
     private void GetHappy()
     {
         state = State.Happy;
-        AdvanceQueue();
     }
 
     private void GetMad()
     {
         state = State.Mad;
-        AdvanceQueue();
     }
 
     private void MoveForward()
