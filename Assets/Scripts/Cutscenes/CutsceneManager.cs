@@ -7,8 +7,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
     public string[] cutscenes = {
         "Cutscene_Test1",
         "Cutscene_Test2",
-        "Cutscene_Test3",
     };
+
 
     string cutsceneName;
 
@@ -22,14 +22,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
     public void PlayCutscene(int index)
     {
-        if (index < cutscenes.Length)
-        {
-            PlayCutscene(cutscenes[index]);
-            return;
-        }
-
-        Debug.Log($"No cutscene for index {index}");
-        PlayCutscene(cutscenes[0]);
+        PlayCutscene(cutscenes[index % 2]);
     }
 
     public void PlayCutscene(string sceneName)

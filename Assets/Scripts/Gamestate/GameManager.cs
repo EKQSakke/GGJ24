@@ -40,6 +40,10 @@ public class GameManager : Singleton<GameManager>
     private float currentRoundTime = 0;
     private float currentStressLevel = 0;
 
+    private float timeWithCurrentNpc = 0;
+    [SerializeField]
+    private float timeToFullNpcStressMultiplier = 10;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -154,8 +158,10 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateGameState()
     {
+        timeWithCurrentNpc += Time.deltaTime;
+        var npcStressMultiplier = GetNpcStressMultiplier();
         GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;
-        ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * Time.deltaTime);
+        ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * npcStressMultiplier * Time.deltaTime);
     }
 
     #endregion
@@ -180,6 +186,18 @@ public class GameManager : Singleton<GameManager>
     private void SetDayOverUI(bool setTo)
     {
         DayOverUI.SetActive(setTo);
+    }
+
+    public void ResetNpcTimer()
+    {
+        timeWithCurrentNpc = 0;
+    }
+
+    float GetNpcStressMultiplier()
+    {
+        var npcData = NPC.CurrentNPCAtDesk.data;
+        var evalPoint = timeWithCurrentNpc / timeToFullNpcStressMultiplier;
+        return npcData.StressGenerationCurve.Evaluate(evalPoint);
     }
 }
 
