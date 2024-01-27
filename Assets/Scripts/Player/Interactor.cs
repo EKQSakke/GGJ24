@@ -7,12 +7,13 @@ public class Interactor : MonoBehaviour
 {
     [SerializeField] private Camera interactorCamera;
     [SerializeField] private RectTransform interactorCrosshair;
-    
+
     [Space]
     [SerializeField] private Transform interactableHolder;
     [SerializeField] private Transform interactableHolderStart;
     [SerializeField] private Transform interactableHolderEnd;
     [SerializeField] private AnimationCurve interactableHolderCurve;
+    [SerializeField] private float interactorResetDuration = 0.2f;
 
     [Space]
     [SerializeField] private LayerMask interactableLayers;
@@ -30,6 +31,7 @@ public class Interactor : MonoBehaviour
     private Interactable interactable;
 
     private Coroutine interactableHolderMoveRoutine;
+    private Coroutine interactableHolderResetRoutine;
 
     void Update()
     {
@@ -96,7 +98,7 @@ public class Interactor : MonoBehaviour
                     interactableHolderMoveRoutine = StartCoroutine(InteractableHolderMoveRoutine());
 
                 onInteractStart.Invoke(interactable, this);
-            }            
+            }
         }
     }
 
@@ -126,6 +128,11 @@ public class Interactor : MonoBehaviour
         interacting = false;
         interactable.InteractEnd(this);
         interactable = null;
+
+        if (interactableHolderResetRoutine != null)
+            StopCoroutine(interactableHolderResetRoutine);
+        if (gameObject.activeInHierarchy)
+            interactableHolderResetRoutine = StartCoroutine(InteractableHolderResetRoutine());
 
         onInteractEnd.Invoke(interactable, this);
     }
@@ -158,6 +165,17 @@ public class Interactor : MonoBehaviour
             interactableHolder.rotation = Quaternion.LerpUnclamped(interactableHolderStart.rotation, interactableHolderEnd.rotation, evaluatedValue);
 
             timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    IEnumerator InteractableHolderResetRoutine()
+    {
+        Vector3 velocity = Vector3.zero;
+
+        while (interactableHolder.position != interactableHolderStart.position)
+        {
+            interactableHolder.position = Vector3.SmoothDamp(interactableHolder.position, interactableHolderStart.position, ref velocity, interactorResetDuration);
             yield return null;
         }
     }
