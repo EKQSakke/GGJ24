@@ -11,8 +11,6 @@ public class NPCDropArea : Interactable
     public override void InteractableUsedOnMe(Interactable interactable)
     {
         base.InteractableUsedOnMe(interactable);
-        spawner.UseItemOnCurrentNPC(interactable.DataObject);
+        NPC.CurrentNPCAtDesk?.UseItemOnCurrentNPC(interactable.DataObject);
     }
-
-
 }

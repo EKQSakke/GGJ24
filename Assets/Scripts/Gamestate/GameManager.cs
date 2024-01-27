@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("References")]
     public NPCSpawner QueSpawner;
+    public NPCMover QueMover;
     public List<UsableItemSpawner> ItemSpawners;
     public Image GameClock;
     public Slider StressLevel;
@@ -26,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject NPCDropArea;
 
     internal bool GameCurrentlyActive = false;
+    internal bool CanGetStress = true;
     internal float Stress => currentStressLevel;
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
@@ -101,7 +103,7 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
-        QueSpawner.SpawnNPCs(10);
+        QueSpawner.SpawnNPCs(QueMover.AmountOfQueuePoints);
 
         PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
         NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);
@@ -135,8 +137,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            CutsceneManager.Instance.PlayCutscene(currentGameRound - 1);
-            //SetDayOverUI(true);
+            SetDayOverUI(true);
         }
     }
 
@@ -150,6 +151,9 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeStressAmount(float changeBy)
     {
+        if (!CanGetStress)
+            return;
+
         currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
 
         if (currentStressLevel > currentRoundSettings.StressThreshold)
@@ -165,7 +169,6 @@ public class GameManager : Singleton<GameManager>
     {
         DayOverUI.SetActive(setTo);
     }
-
 }
 
 [Serializable]
