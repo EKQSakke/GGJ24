@@ -88,7 +88,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void InteractableUsedOnMe(Interactable interactable)
     {
-
+        Debug.Log("Interactable | " + interactable.gameObject.name + ": Used on me: " + gameObject.name);
     }
 
     private void ParentInteractable(Transform parent)

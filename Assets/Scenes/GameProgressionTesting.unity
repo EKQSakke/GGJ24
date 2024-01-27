@@ -1011,6 +1011,7 @@ MonoBehaviour:
   - {fileID: 2095425764}
   - {fileID: 648093738}
   - {fileID: 1680174459}
+  MyInteractable: {fileID: 0}
 --- !u!4 &688812558
 Transform:
   m_ObjectHideFlags: 0
