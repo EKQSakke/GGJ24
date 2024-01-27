@@ -4,18 +4,26 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public static Action RoundStart;
+    public static Action RoundOver;
+
     [Header("Game settings")]
     public List<GameRoundSettings> GameRounds = new List<GameRoundSettings>();
 
     [Header("References")]
+    public NPCSpawner QueSpawner;
     public List<UsableItemSpawner> ItemSpawners;
     public Image GameClock;
     public Slider StressLevel;
     public TextMeshProUGUI DayTitleText;
     public GameObject DayOverUI;
+    public GameObject PaperDropArea;
+    public GameObject NPCDropArea;
 
     internal bool GameCurrentlyActive = false;
     internal float Stress => currentStressLevel;
@@ -34,6 +42,11 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        GameData.LoadDataFiles();
+    }
+
+    private void Start()
+    {
         StartNewGame();
     }
 
@@ -52,8 +65,10 @@ public class GameManager : Singleton<GameManager>
         else
         {
             UpdateGameState();
-        }        
+        }
     }
+
+    #region Round handling
 
     private void StartNewGame()
     {
@@ -78,20 +93,40 @@ public class GameManager : Singleton<GameManager>
         DayTitleText.text = "Day " + (currentGameRound + 1);
         SetDayOverUI(false);
 
-        List<UsableItemData> items = GameData.GetAll<UsableItemData>();
+        List<UsableItemData> items = new List<UsableItemData>(currentRoundSettings.ItemsToSpawn);
 
-        foreach (UsableItemSpawner spawner in ItemSpawners)
+        foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
         {
+            spawner.SetSpawnerInteractableState(true);
             spawner.CreateItems(items);
         }
 
+        QueSpawner.SpawnNPCs();
+
+        PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
+        NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         GameCurrentlyActive = true;
+        RoundStart?.Invoke();
     }
 
     private void EndCurrentRound()
     {
         Debug.Log("Ending game round: " + currentGameRound);
         currentGameRound++;
+
+        foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
+        {
+            spawner.SetSpawnerInteractableState(false);
+        }
+
+        RoundOver?.Invoke();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (currentGameRound >= GameRounds.Count)
         {
@@ -100,24 +135,30 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            SetDayOverUI(true);
+            CutsceneManager.Instance.PlayCutscene(currentGameRound - 1);
+            //SetDayOverUI(true);
         }
     }
 
     private void UpdateGameState()
     {
         GameClock.fillAmount = currentRoundTime / currentRoundSettings.TimeInSeconds;
-        StressLevel.value = currentStressLevel;
+        ChangeStressAmount(currentRoundSettings.DefaultStressPerSecond * Time.deltaTime);
+    }
+
+    #endregion
+
+    public void ChangeStressAmount(float changeBy)
+    {
+        currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
 
         if (currentStressLevel > currentRoundSettings.StressThreshold)
         {
             Debug.LogError("STRESSED OUT!");
             currentStressLevel = 0f;
         }
-        else
-        {
-            currentStressLevel += currentRoundSettings.DefaultStressPerSecond * Time.deltaTime;
-        }
+
+        StressLevel.value = currentStressLevel;
     }
 
     private void SetDayOverUI(bool setTo)
@@ -135,4 +176,7 @@ public class GameRoundSettings
     public float StressThreshold = 0.75f;
     [Range(0f, 1f)]
     public float DefaultStressPerSecond = 0.15f;
+    public bool UseNPCDropArea = true;
+    public List<UsableItemSpawner> UsedSpawnersForRound;
+    public List<UsableItemData> ItemsToSpawn;
 }

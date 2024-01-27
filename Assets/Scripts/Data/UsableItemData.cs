@@ -7,11 +7,22 @@ public class UsableItemData : GameData
 {
     public GameObject Prefab;
     public UsableItemType ItemType;
+    public InteractionMode InteractionMode;
+}
+
+public enum InteractionMode
+{
+    None,
+    Click,
+    Drag
 }
 
 public enum UsableItemType
 {
     None,
     Food,
-    Drug
+    Drug,
+    Coffee,
+    YesStamp,
+    NoStamp
 }

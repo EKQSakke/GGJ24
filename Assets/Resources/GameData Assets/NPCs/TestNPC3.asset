@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feda0966e0a6d7e479dff8d73df59da8, type: 3}
-  m_Name: Test Item
+  m_Script: {fileID: 11500000, guid: 5423d9490d5e78744b0f94a0d59f8f30, type: 3}
+  m_Name: TestNPC3
   m_EditorClassIdentifier: 
   Active: 1
-  Prefab: {fileID: 0}
-  ItemType: 0
+  NPCPrefab: {fileID: 4506037314493391649, guid: fafeba73dbbc7684f8f589904293e521, type: 3}
+  Name: testName
+  City: testCity
+  Occupation: testOccupation
+  ItemNeeded: 5

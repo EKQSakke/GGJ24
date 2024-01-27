@@ -7,8 +7,9 @@ using UnityEngine.TextCore.Text;
 
 public class NPCSpawner : MonoBehaviour
 {
-    [SerializeField]
-    List<NPCData> NPCDatas = new List<NPCData>();
+    [SerializeField] GameObject interactionParticlePrefab;
+    [SerializeField] GameObject badInteractionParticlePrefab;
+    [SerializeField] List<NPCData> NPCDatas = new List<NPCData>();
 
     List<NPC> NPCs = new List<NPC>();
 
@@ -16,30 +17,20 @@ public class NPCSpawner : MonoBehaviour
     Vector3 spawnLocation = Vector3.zero;
     [SerializeField]
     float distanceToNextNPC = 2f;
-    
-    private void Awake()
-    {
-        PopulateList();
-    }
+
     // Start is called before the first frame update
     private void Start()
-    {
-        SpawnNPCs();
-    }
-    void PopulateList()
-    {
-        string[] assetNames = AssetDatabase.FindAssets("NPC", new[] { "Assets/GameDataObjects/NPC" });
-        NPCDatas.Clear();
-        foreach (string SOName in assetNames)
-        {
-            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
-            var character = AssetDatabase.LoadAssetAtPath<NPCData>(SOpath);
-            NPCDatas.Add(character);
-        }
+    {      
+        if (GameManager.Instance == null)
+            SpawnNPCs();
     }
 
-    void SpawnNPCs()
+    public void SpawnNPCs()
     {
+        if (NPCDatas.IsEmpty())
+            NPCDatas = GameData.GetAll<NPCData>();
+
+        ClearQueue();
         int positionInQueue = 1;
 
         foreach (NPCData data in NPCDatas)
@@ -53,16 +44,61 @@ public class NPCSpawner : MonoBehaviour
         }
     }
 
+    public void ClearQueue()
+    {
+        foreach (var item in NPCs)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        NPCs.Clear();
+    }
+
+    public void UseItemOnCurrentNPC(UsableItemData itemUsed)
+    {
+        if (NPCs.IsEmpty())
+            return;
+
+        
+
+        if (NPCs[0].ItemGivenToMe(itemUsed))
+        {
+            if (interactionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(interactionParticlePrefab, NPCs[0].transform.position - NPCs[0].transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+        else
+        {
+            if (badInteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(badInteractionParticlePrefab, NPCs[0].transform.position - NPCs[0].transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+
+        NPCs.RemoveAt(0);
+        AdvanceNextNPC();
+    }
+
+    private void AdvanceNextNPC()
+    {
+        if (NPCs.IsEmpty())
+            return;
+
+        foreach (var item in NPCs)
+        {
+            item.AdvanceQueue();
+        }          
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            foreach (var item in NPCs)
-            {
-                if (item != null)
-                item.AdvanceQueue();
-            }
-        }
-        
+            AdvanceNextNPC();
+        }        
     }
 }

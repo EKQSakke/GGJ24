@@ -16,6 +16,21 @@ public class NPC : MonoBehaviour
     public int positionInQueue;
     private float step = 2f;
 
+    public bool ItemGivenToMe(UsableItemData item)
+    {
+        if (item.ItemType == data.ItemNeeded)
+        {
+            Debug.Log("GOT ME WHAT I WANT!!!");
+            GetHappy();
+            return true;
+        }
+        else
+        {
+            GetMad();
+            return false;
+        }
+    }
+
     // Start is called before the first frame update
     public void AdvanceQueue()
     {
@@ -40,6 +55,7 @@ public class NPC : MonoBehaviour
                 break;
             case State.Mad: 
                 Debug.Log("Mad");
+                Destroy(gameObject);
                 break;
         }
     }
@@ -49,6 +65,7 @@ public class NPC : MonoBehaviour
         state = State.Happy;
         AdvanceQueue();
     }
+
     private void GetMad()
     {
         state = State.Mad;

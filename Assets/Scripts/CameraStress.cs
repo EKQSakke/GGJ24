@@ -8,7 +8,7 @@ public class CameraStress : MonoBehaviour
 
     [SerializeField]
     [Range(0.0f, 5.0f)]
-    float shakeMultiplier = 0;
+    float shakeMultiplier = 1;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -25,7 +25,7 @@ public class CameraStress : MonoBehaviour
     {
         if (GameManager.Instance == null)
             return;
-            
+
         var stress = GameManager.Instance.Stress;
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = stress * shakeMultiplier * .2f;
         cinemachineBasicMultiChannelPerlin.m_FrequencyGain = stress * shakeMultiplier * 2;

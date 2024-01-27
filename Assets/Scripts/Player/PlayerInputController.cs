@@ -22,12 +22,18 @@ public class PlayerInputController : MonoBehaviour
 
     void OnLook(InputValue inputValue)
     {
+        if (GameManager.Instance != null && GameManager.Instance.GameCurrentlyActive == false)
+            return;
+
         Vector2 value = inputValue.Get<Vector2>();
         player.Look.RotateLook(value);
     }
 
     void OnInteract(InputValue inputValue)
     {
+        if (GameManager.Instance != null && GameManager.Instance.GameCurrentlyActive == false)
+            return;
+
         float value = inputValue.Get<float>();
 
         if (value == 1f)
@@ -35,4 +41,5 @@ public class PlayerInputController : MonoBehaviour
         else
             player.Interactor.EndInteraction();
     }
+
 }

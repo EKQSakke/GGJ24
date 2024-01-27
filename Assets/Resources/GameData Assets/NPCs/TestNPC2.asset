@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5423d9490d5e78744b0f94a0d59f8f30, type: 3}
+  m_Name: TestNPC2
+  m_EditorClassIdentifier: 
+  Active: 1
+  NPCPrefab: {fileID: 4506037314493391649, guid: fafeba73dbbc7684f8f589904293e521, type: 3}
+  Name: testName
+  City: testCity
+  Occupation: testOccupation
+  ItemNeeded: 4

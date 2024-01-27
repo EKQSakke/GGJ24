@@ -9,6 +9,7 @@ public class NPCData : GameData
     public string Name;
     public string City;
     public string Occupation;
+    public UsableItemType ItemNeeded = UsableItemType.None; 
     public enum Need 
     {Money, Food, Drugs };
 

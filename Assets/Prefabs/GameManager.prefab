@@ -1302,14 +1302,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetDontDestroy: 1
   GameRounds:
-  - TimeInSeconds: 5
-    StressThreshold: 0.75
-    DefaultStressPerSecond: 0.02
   - TimeInSeconds: 60
     StressThreshold: 0.75
     DefaultStressPerSecond: 0.02
+    UseNPCDropArea: 0
+  - TimeInSeconds: 60
+    StressThreshold: 0.75
+    DefaultStressPerSecond: 0.02
+    UseNPCDropArea: 1
+  QueSpawner: {fileID: 0}
   ItemSpawners: []
   GameClock: {fileID: 5163546416575744013}
   StressLevel: {fileID: 7267372273202515881}
   DayTitleText: {fileID: 9050853581980301614}
   DayOverUI: {fileID: 6400074902302013907}
+  PaperDropArea: {fileID: 0}
+  NPCDropArea: {fileID: 0}
