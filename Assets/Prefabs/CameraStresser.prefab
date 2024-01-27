@@ -55,9 +55,9 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 50
     OrthographicSize: 5
-    NearClipPlane: 0.3
+    NearClipPlane: 0.05
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93434df4cd6c09240849ce2f2c2000b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmount: 0
+  shakeMultiplier: 0
 --- !u!1 &6410751623188118295
 GameObject:
   m_ObjectHideFlags: 0
