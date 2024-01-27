@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestNPC
   m_EditorClassIdentifier: 
   Active: 1
-  NPCPrefab: {fileID: 4506037314493391649, guid: fafeba73dbbc7684f8f589904293e521, type: 3}
+  NPCPrefab: {fileID: 3775374695425811048, guid: 788ca71dc878dd643bb566a6917bc3be, type: 3}
   Name: testName
   City: testCity
   Occupation: testOccupation
