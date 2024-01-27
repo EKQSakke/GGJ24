@@ -8,6 +8,9 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
     TextMeshProUGUI text;
 
     [SerializeField]
+    TextMeshProUGUI speakerText;
+
+    [SerializeField]
     float timePerCharacter = .02f;
 
     [SerializeField]
@@ -23,8 +26,20 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
         }
     }
 
-    public void ShowText(string input)
+    public void ShowText(string input, NPC speaker)
     {
+        Debug.Log($"Showing text {speaker.name}");
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine);
+        }
+        text.text = "";
+        speakerText.text = speaker.name;
+        currentRoutine = StartCoroutine(DrawText(input));
+    }
+
+    public void ShowText(string input) {
+        speakerText.text = "";
         if (currentRoutine != null)
         {
             StopCoroutine(currentRoutine);
@@ -43,5 +58,6 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
 
         yield return new WaitForSeconds(emptyDelay);
         text.text = "";
+        speakerText.text = "";
     }
 }
