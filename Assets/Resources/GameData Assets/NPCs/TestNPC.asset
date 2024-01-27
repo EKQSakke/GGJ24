@@ -43,4 +43,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  StressOnSuccess: -0.05
+  StressOnFail: 0.1
   ItemNeeded: 4

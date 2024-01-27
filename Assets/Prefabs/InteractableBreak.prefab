@@ -163,6 +163,9 @@ MonoBehaviour:
   onHoverEnd:
     m_PersistentCalls:
       m_Calls: []
+  onUsedOnMe:
+    m_PersistentCalls:
+      m_Calls: []
   interactionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
   StressRelieved: 0.5
 --- !u!1 &5766534122526253229
@@ -176,7 +179,6 @@ GameObject:
   - component: {fileID: 5292182399436399185}
   - component: {fileID: 205733972031073483}
   - component: {fileID: 7263897725439755036}
-  - component: {fileID: 890037738602654703}
   m_Layer: 20
   m_Name: Sphere
   m_TagString: Untagged
@@ -249,27 +251,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &890037738602654703
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766534122526253229}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7668534434414510949
 GameObject:
   m_ObjectHideFlags: 0

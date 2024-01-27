@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1821bf4cb2f54fa4c9849bfe647335a2, type: 3}
+  m_Name: Give Sounds
+  m_EditorClassIdentifier: 
+  clipIdentifier: GiveSound
+  soundEffectList:
+  - clipToPlay: {fileID: 8300000, guid: d3dc10dc80e61d74f852d7dff991f752, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 4446591f6d305af4d90a4150bfeb3186, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: fc8206ced6e888e46b4d03fa762bd498, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 09767af1a8915104dacf3c0dd57d72b5, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 7ff1571f04496b944b1529221e56d9cb, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 9a3a3ae582b0af54b9874561a9b482c0, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 44fa423e46e14874786e1a9baca895b3, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: b31747c4d65f7f14b8d4a44f23580428, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 28c1037a93640594c8da96095ad78ff4, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 48214ecffdee5fd40b6545ef1458f6e4, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 631a1f2fbe380234daed56e6ae67b6f9, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 13dd9bc3a2156034f8dc534b6892ea6f, type: 3}
+    effectVolume: 0.4
+  - clipToPlay: {fileID: 8300000, guid: 21aa10636f7ad1545be174b9bbf51595, type: 3}
+    effectVolume: 0.4

@@ -165,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1602903748}
   - component: {fileID: 1602903747}
-  - component: {fileID: 1602903746}
   - component: {fileID: 1602903749}
   - component: {fileID: 1602903750}
   m_Layer: 0
@@ -175,14 +174,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1602903746
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602903745}
-  m_Enabled: 0
 --- !u!20 &1602903747
 Camera:
   m_ObjectHideFlags: 0
@@ -399,7 +390,7 @@ Transform:
   m_Children:
   - {fileID: 4571028658104114884}
   m_Father: {fileID: 172593522}
-  m_LocalEulerAnglesHint: {x: 0, y: -3.9555845, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3533605801466277845
 MonoBehaviour:
   m_ObjectHideFlags: 3

@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject NPCDropArea;
 
     internal bool GameCurrentlyActive = false;
-    internal bool CanGetStress = true;
+    internal bool OnBreak = false;
     internal float Stress => currentStressLevel;
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
@@ -67,7 +67,7 @@ public class GameManager : Singleton<GameManager>
 
         currentRoundTime += Time.deltaTime;
 
-        if (currentRoundTime >= currentRoundSettings.TimeInSeconds)
+        if (currentRoundTime >= currentRoundSettings.TimeInSeconds && !OnBreak)
         {
             EndCurrentRound();
         }
@@ -167,7 +167,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeStressAmount(float changeBy)
     {
-        if (!CanGetStress)
+        if (OnBreak)
             return;
 
         currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
