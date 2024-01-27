@@ -8,10 +8,11 @@ public class CoffeeInteractable : Interactable
 
     public float StressRelieved = 0.25f;
     public int CoffeeAmount = 3;
+    public int MaxCoffeeAmount = 3;
 
     public override void InteractEnd(Interactor interactor)
     {
-        if (CoffeeAmount < 1) 
+        if (CoffeeAmount < 1)
         {
             Debug.Log("Out of coffee!");
             return;
@@ -32,6 +33,11 @@ public class CoffeeInteractable : Interactable
 
     public void Refill(int amount = 3)
     {
+        if (CoffeeAmount + amount > MaxCoffeeAmount)
+        {
+            CoffeeAmount = MaxCoffeeAmount;
+            return;
+        }
         CoffeeAmount = amount;
     }
 
