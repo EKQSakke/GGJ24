@@ -125,4 +125,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d0f1dfaac2cdb3f4b8e0d6597be6fe4d, type: 3}
   - {fileID: 21300000, guid: f09ce58b3e867f64a9dee8b15fa161b9, type: 3}
   - {fileID: 21300000, guid: 2cdffd9daf5f73447a747148c2763fe3, type: 3}
+  Bodies:
+  - {fileID: 21300000, guid: 6fb6d49253486a24190e61e775633f74, type: 3}
+  - {fileID: 21300000, guid: 8a5471446365ace428de24b305dc17bf, type: 3}
+  - {fileID: 21300000, guid: 43b841e015ef58c4193538cdae606e04, type: 3}
+  - {fileID: 21300000, guid: 151d32148fde00b4f9f5ed51bb2965a0, type: 3}
+  - {fileID: 21300000, guid: 01815eee22d459943a87f4471dbf294b, type: 3}
+  - {fileID: 21300000, guid: 5a00d0fcd4a78ca4a8d4bd51568a926a, type: 3}
   NPCScaleVariance: 0.1

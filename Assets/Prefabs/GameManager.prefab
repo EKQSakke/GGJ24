@@ -1302,16 +1302,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetDontDestroy: 0
   GameRounds:
-  - TimeInSeconds: 60
+  - TimeInSeconds: 120
     StressThreshold: 0.75
-    DefaultStressPerSecond: 0.02
+    DefaultStressPerSecond: 0.01
     UseNPCDropArea: 0
-    UsedSpawnersForRound: []
-    ItemsToSpawn: []
+    UsedSpawnersForRound:
+    - {fileID: 0}
+    - {fileID: 0}
+    ItemsToSpawn:
+    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
+    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
+    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
     DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
-  - TimeInSeconds: 60
+  - TimeInSeconds: 120
     StressThreshold: 0.75
-    DefaultStressPerSecond: 0.02
+    DefaultStressPerSecond: 0.01
     UseNPCDropArea: 1
     UsedSpawnersForRound: []
     ItemsToSpawn: []
