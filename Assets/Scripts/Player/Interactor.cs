@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] private Transform interactorBase;
+    [SerializeField] private Camera interactorCamera;
+    [SerializeField] private RectTransform interactorCrosshair;
     
     [Space]
     [SerializeField] private Transform interactableHolder;
@@ -131,7 +132,9 @@ public class Interactor : MonoBehaviour
 
     private Interactable ScanForInteractable()
     {
-        if (Physics.Raycast(interactorBase.position, interactorBase.forward, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
+        Ray ray = interactorCamera.ScreenPointToRay(interactorCrosshair.position);
+
+        if (Physics.Raycast(ray, out RaycastHit rayhit, interactorDistance, interactableLayers, QueryTriggerInteraction.Ignore))
         {
             if (rayhit.collider.TryGetComponent(out Interactable interactable))
             {
