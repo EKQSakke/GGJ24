@@ -9,6 +9,6 @@ public class TimelineFunctions : MonoBehaviour
 
     public void EndCutscene()
     {
-        CutsceneManager.Instance.ReturnToLastScene();
+        CutsceneManager.Instance.ReturnToGame();
     }
 }

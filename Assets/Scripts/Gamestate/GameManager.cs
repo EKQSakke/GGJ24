@@ -50,17 +50,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.activeSceneChanged += OnSceneLoaded;
         StartNewGame();
-    }
-
-    void OnSceneLoaded(Scene oldScene, Scene scene)
-    {
-        Debug.Log($"OnSceneLoaded {scene.name}, {oldScene.name}");
-        if (scene.name == "Sakke_GameScene")
-        {
-            StartNewRound();
-        }
     }
 
     // Update is called once per frame
@@ -114,10 +104,6 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
-        if (QueSpawner == null) // It's scene object and game manager will leave through multiple scenes
-        {
-            QueSpawner = FindObjectOfType<NPCSpawner>();
-        }
         QueSpawner.SpawnNPCs();
 
         PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
@@ -152,7 +138,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            CutsceneManager.Instance.PlayCutscene("Sakke_Cutscene_Test1");
+            CutsceneManager.Instance.PlayCutscene(currentGameRound - 1);
             //SetDayOverUI(true);
         }
     }

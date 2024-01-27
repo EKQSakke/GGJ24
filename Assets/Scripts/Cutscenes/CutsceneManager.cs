@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,8 +9,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         "Cutscene_Test3",
     };
 
-
-    string lastSceneName;
+    string cutsceneName;
 
     private void Awake()
     {
@@ -26,20 +24,21 @@ public class CutsceneManager : Singleton<CutsceneManager>
         if (index < cutscenes.Length)
         {
             PlayCutscene(cutscenes[index]);
+            return;
         }
 
-        Debug.LogError($"Now cutscene for index {index}");
+        Debug.LogError($"No cutscene for index {index}");
     }
 
     public void PlayCutscene(string sceneName)
     {
-        lastSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        cutsceneName = sceneName;
+        SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
     }
 
-    public void ReturnToLastScene()
+    public void ReturnToGame()
     {
-        SceneManager.LoadScene(lastSceneName);
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName)).completed += (_) => GameManager.Instance.StartNewRound();
     }
 }
 
