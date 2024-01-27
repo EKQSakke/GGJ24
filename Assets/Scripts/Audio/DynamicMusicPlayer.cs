@@ -57,6 +57,30 @@ public class DynamicMusicPlayer : MonoBehaviour
         StopAllCoroutines();
     }
 
+    [ContextMenu(nameof(PauseMusic))]
+    public void PauseMusic()
+    {
+        if (!isPlaying)
+            return;
+
+        basePlayer.Pause();
+        overlayPlayer.Pause();
+        isPlaying = false;
+        StopAllCoroutines();
+    }
+
+    public void TogglePause()
+    {
+        if (isPlaying)
+        {
+            PauseMusic();
+        }
+        else
+        {
+            PlayMusic();
+        }
+    }
+
     IEnumerator EvaluateMusic()
     {
         float dynamicLevel = 0;
