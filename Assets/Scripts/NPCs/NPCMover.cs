@@ -13,12 +13,13 @@ public class NPCMover : MonoBehaviour
         public int currentQueuePointIndex;
     }
 
+    [SerializeField] private NPCSpawner spawner;
     [SerializeField] private Transform[] path;
     [SerializeField] private Transform discardPoint;
 
     [Space]
-    [SerializeField] private NPCSpawner spawner;
     [SerializeField] private AnimationCurve moveStepCurve;
+    [SerializeField] private AnimationCurve rotationCurve;
 
     [Header("Read Only")]
     [SerializeField] private List<QueueMover> queueMovers;
@@ -86,13 +87,13 @@ public class NPCMover : MonoBehaviour
 
     IEnumerator MoveQueueRoutine()
     {
-        float timer = 0f;
+        float timer = 0f, evaluatedValue = 0f;
         float duration = moveStepCurve.keys[moveStepCurve.length - 1].time;
-        float evaluatedValue = 0f;
         Vector3 startPosition, endPosition;
 
-        while (timer <= duration)
+        do 
         {
+            timer += Time.deltaTime;
             evaluatedValue = moveStepCurve.Evaluate(timer / duration);
 
             for (int i = 0; i < queueMovers.Count; i++)
@@ -108,13 +109,25 @@ public class NPCMover : MonoBehaviour
                     endPosition = discardPoint.position;
 
                 queueMovers[i].mover.position = Vector3.LerpUnclamped(startPosition, endPosition, evaluatedValue);
+                RotateMover(queueMovers[i], (endPosition - startPosition).normalized, timer / duration);
             }
 
-            timer += Time.deltaTime;
             yield return null;
-        }
+
+        } while (timer <= duration);
 
         CompleteQueueMovement();
+    }
+
+    void RotateMover(QueueMover queueMover, Vector3 moveDirection, float normalizedProgress)
+    {
+        Vector3 rotationAxis = Vector3.Cross(Vector3.up, moveDirection);
+        Vector3 direction = Quaternion.AngleAxis(rotationCurve.Evaluate(normalizedProgress), rotationAxis) * moveDirection;
+
+        Debug.DrawRay(queueMover.mover.position, direction, Color.red);
+        Debug.DrawRay(queueMover.mover.position, rotationAxis, Color.magenta);
+
+        queueMover.mover.rotation = Quaternion.LookRotation(direction, Vector3.up);
     }
 
     void CompleteQueueMovement()
