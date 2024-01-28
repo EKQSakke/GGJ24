@@ -1302,7 +1302,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetDontDestroy: 0
   GameRounds:
-  - TimeInSeconds: 120
+  - TimeInSeconds: 45
+    StressThreshold: 1
+    DefaultStressPerSecond: 0.01
+    UseNPCDropArea: 0
+    UsedSpawnersForRound: []
+    ItemsToSpawn: []
+    NPCsToSpawn:
+    - {fileID: 11400000, guid: 6f55012336062d84fb36b4a0f2d9a3b7, type: 2}
+    - {fileID: 11400000, guid: dae6ad3c6e8ad3140b460d95b61e9d57, type: 2}
+    DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
+  - TimeInSeconds: 110
     StressThreshold: 1
     DefaultStressPerSecond: 0.01
     UseNPCDropArea: 0
@@ -1314,14 +1324,74 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5cef10b1d7edfa94487d0f0ada01261e, type: 2}
     - {fileID: 11400000, guid: 6163454abf0cd1c4386f8caf35d0d4f2, type: 2}
     - {fileID: 11400000, guid: 54ab2e1188c590444826b87bc11e7936, type: 2}
+    NPCsToSpawn:
+    - {fileID: 11400000, guid: de968b49447a68e40958b5c3ca0050ea, type: 2}
+    - {fileID: 11400000, guid: 29ec2d3b80c676a44afdb881488fc0d4, type: 2}
+    - {fileID: 11400000, guid: 7226663df3210c3449565d17c321f938, type: 2}
+    - {fileID: 11400000, guid: cc0f3113c1534a84d9c63f4197607d9a, type: 2}
+    - {fileID: 11400000, guid: dae6ad3c6e8ad3140b460d95b61e9d57, type: 2}
+    - {fileID: 11400000, guid: 6f55012336062d84fb36b4a0f2d9a3b7, type: 2}
+    DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
+  - TimeInSeconds: 110
+    StressThreshold: 1
+    DefaultStressPerSecond: 0.01
+    UseNPCDropArea: 0
+    UsedSpawnersForRound:
+    - {fileID: 0}
+    - {fileID: 0}
+    ItemsToSpawn:
+    - {fileID: 11400000, guid: bb2528742a0a20c4f83811ae8a7a9669, type: 2}
+    - {fileID: 11400000, guid: 5cef10b1d7edfa94487d0f0ada01261e, type: 2}
+    - {fileID: 11400000, guid: 6163454abf0cd1c4386f8caf35d0d4f2, type: 2}
+    - {fileID: 11400000, guid: 54ab2e1188c590444826b87bc11e7936, type: 2}
+    NPCsToSpawn:
+    - {fileID: 11400000, guid: de968b49447a68e40958b5c3ca0050ea, type: 2}
+    - {fileID: 11400000, guid: 29ec2d3b80c676a44afdb881488fc0d4, type: 2}
+    - {fileID: 11400000, guid: 7226663df3210c3449565d17c321f938, type: 2}
+    - {fileID: 11400000, guid: cc0f3113c1534a84d9c63f4197607d9a, type: 2}
+    - {fileID: 11400000, guid: dae6ad3c6e8ad3140b460d95b61e9d57, type: 2}
+    - {fileID: 11400000, guid: 6f55012336062d84fb36b4a0f2d9a3b7, type: 2}
     DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
   - TimeInSeconds: 120
     StressThreshold: 1
     DefaultStressPerSecond: 0.01
     UseNPCDropArea: 1
-    UsedSpawnersForRound: []
-    ItemsToSpawn: []
-    DayRules: {fileID: 11400000, guid: cf826b5c6f2a4b74ba8c442e1d8dc338, type: 2}
+    UsedSpawnersForRound:
+    - {fileID: 0}
+    - {fileID: 0}
+    ItemsToSpawn:
+    - {fileID: 11400000, guid: bb2528742a0a20c4f83811ae8a7a9669, type: 2}
+    - {fileID: 11400000, guid: 5cef10b1d7edfa94487d0f0ada01261e, type: 2}
+    - {fileID: 11400000, guid: 6163454abf0cd1c4386f8caf35d0d4f2, type: 2}
+    - {fileID: 11400000, guid: 54ab2e1188c590444826b87bc11e7936, type: 2}
+    NPCsToSpawn:
+    - {fileID: 11400000, guid: de968b49447a68e40958b5c3ca0050ea, type: 2}
+    - {fileID: 11400000, guid: 29ec2d3b80c676a44afdb881488fc0d4, type: 2}
+    - {fileID: 11400000, guid: 7226663df3210c3449565d17c321f938, type: 2}
+    - {fileID: 11400000, guid: cc0f3113c1534a84d9c63f4197607d9a, type: 2}
+    - {fileID: 11400000, guid: dae6ad3c6e8ad3140b460d95b61e9d57, type: 2}
+    - {fileID: 11400000, guid: 6f55012336062d84fb36b4a0f2d9a3b7, type: 2}
+    DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
+  - TimeInSeconds: 120
+    StressThreshold: 1
+    DefaultStressPerSecond: 0.01
+    UseNPCDropArea: 1
+    UsedSpawnersForRound:
+    - {fileID: 0}
+    - {fileID: 0}
+    ItemsToSpawn:
+    - {fileID: 11400000, guid: bb2528742a0a20c4f83811ae8a7a9669, type: 2}
+    - {fileID: 11400000, guid: 5cef10b1d7edfa94487d0f0ada01261e, type: 2}
+    - {fileID: 11400000, guid: 6163454abf0cd1c4386f8caf35d0d4f2, type: 2}
+    - {fileID: 11400000, guid: 54ab2e1188c590444826b87bc11e7936, type: 2}
+    NPCsToSpawn:
+    - {fileID: 11400000, guid: de968b49447a68e40958b5c3ca0050ea, type: 2}
+    - {fileID: 11400000, guid: 29ec2d3b80c676a44afdb881488fc0d4, type: 2}
+    - {fileID: 11400000, guid: 7226663df3210c3449565d17c321f938, type: 2}
+    - {fileID: 11400000, guid: cc0f3113c1534a84d9c63f4197607d9a, type: 2}
+    - {fileID: 11400000, guid: dae6ad3c6e8ad3140b460d95b61e9d57, type: 2}
+    - {fileID: 11400000, guid: 6f55012336062d84fb36b4a0f2d9a3b7, type: 2}
+    DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
   CurrentGameSettings: {fileID: 11400000, guid: 2693cd6381718f645b41003f338a17da, type: 2}
   QueSpawner: {fileID: 0}
   QueMover: {fileID: 0}
@@ -1330,6 +1400,7 @@ MonoBehaviour:
   StressLevel: {fileID: 7267372273202515881}
   DayTitleText: {fileID: 9050853581980301614}
   DayOverUI: {fileID: 6400074902302013907}
+  BadPaperDropArea: {fileID: 0}
   PaperDropArea: {fileID: 0}
   NPCDropArea: {fileID: 0}
   timeToFullNpcStressMultiplier: 10

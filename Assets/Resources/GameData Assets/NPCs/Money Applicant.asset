@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5423d9490d5e78744b0f94a0d59f8f30, type: 3}
+  m_Name: Money Applicant
+  m_EditorClassIdentifier: 
+  Active: 1
+  NPCPrefab: {fileID: 3775374695425811048, guid: 788ca71dc878dd643bb566a6917bc3be, type: 3}
+  InteractionParticlePrefab: {fileID: 5881857439731108895, guid: 07445d7d9c1bfa240a4204531db0b88b, type: 3}
+  BadInteractionParticlePrefab: {fileID: 7778863314175787918, guid: bd5bf8ac9209b0c40bfad51dbe54aad3, type: 3}
+  Name: testName
+  City: testCity
+  Occupation: testOccupation
+  StressGenerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.46201372
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 2.9649777
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  StressOnSuccess: -0.05
+  StressOnFail: 0.1
+  ItemNeeded: 7
+  RelatedHat: {fileID: 21300000, guid: bb9b3b65c7a0f814bbad1f7ddd65b630, type: 3}

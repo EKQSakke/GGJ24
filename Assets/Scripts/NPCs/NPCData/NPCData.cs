@@ -14,7 +14,6 @@ public class NPCData : GameData
     public AnimationCurve StressGenerationCurve;
     public float StressOnSuccess;
     public float StressOnFail;
-    public UsableItemType ItemNeeded = UsableItemType.None; 
-    public enum Need 
-    {Money, Food, Drugs };
+    public UsableItemType ItemNeeded = UsableItemType.None;
+    public Sprite RelatedHat;
 }

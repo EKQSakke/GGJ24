@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+
+    public static Action NewNPCAtDesk;
     private static NPC currentNPCAtDesk; public static NPC CurrentNPCAtDesk { get { return currentNPCAtDesk; } }
 
     public delegate void NPCAction(NPC npc);
@@ -40,24 +43,8 @@ public class NPC : MonoBehaviour
 
     public void UseItemOnCurrentNPC(UsableItemData itemUsed)
     {
-        if (ItemGivenToMe(itemUsed))
-        {
-            if (data.InteractionParticlePrefab != null)
-            {
-                GameObject interactionParticle = Instantiate(data.InteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
-                Destroy(interactionParticle, 2f);
-            }
-        }
-        else
-        {
-            if (data.BadInteractionParticlePrefab != null)
-            {
-                GameObject interactionParticle = Instantiate(data.BadInteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
-                Destroy(interactionParticle, 2f);
-            }
-        }
-
-        onNPCItemUsed?.Invoke(this);
+        StartCoroutine(ItemReactionRoutine(itemUsed));
+        currentNPCAtDesk = null;
     }
 
     public bool ItemGivenToMe(UsableItemData item)
@@ -90,7 +77,7 @@ public class NPC : MonoBehaviour
     {
         state = State.atDesk;
         currentNPCAtDesk = this;
-        GameManager.Instance.ResetNpcTimer();
+        NewNPCAtDesk?.Invoke();
 
         SetMood(NPCMood.Neutral);
 
@@ -102,7 +89,8 @@ public class NPC : MonoBehaviour
     {
         if (VisualScript != null)
         {
-            VisualScript.SetupVisuals();
+            bool showNoHat = UnityEngine.Random.Range(0f, 1f) > 0.8f;
+            VisualScript.SetupVisuals(showNoHat ? null : data.RelatedHat);
         }
     }
 
@@ -137,6 +125,30 @@ public class NPC : MonoBehaviour
         {
             VisualScript.SetMood(mood);
         }
+    }
+
+    private IEnumerator ItemReactionRoutine(UsableItemData itemUsed)
+    {
+        yield return new WaitForSeconds(0.75f);
+
+        if (ItemGivenToMe(itemUsed))
+        {
+            if (data.InteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(data.InteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+        else
+        {
+            if (data.BadInteractionParticlePrefab != null)
+            {
+                GameObject interactionParticle = Instantiate(data.BadInteractionParticlePrefab, transform.position - transform.forward, Quaternion.identity);
+                Destroy(interactionParticle, 2f);
+            }
+        }
+
+        onNPCItemUsed?.Invoke(this);        
     }
 
 }

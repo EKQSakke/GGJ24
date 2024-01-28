@@ -74,10 +74,10 @@ public class NPCMover : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            MoveQueue();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    MoveQueue();
+        //}
     }
 
     public void MoveQueue()

@@ -15,7 +15,7 @@ public class NPCVisuals : MonoBehaviour
     private RandomNPCLooks myLook;
     private Vector3? defaultScale;
 
-    public void SetupVisuals()
+    public void SetupVisuals(Sprite workHat = null)
     {
         if (defaultScale == null)
         {
@@ -25,7 +25,7 @@ public class NPCVisuals : MonoBehaviour
         CreateRandomLook();
         HeadRenderer.sprite = myLook.BaseHead;
         BodyRenderer.sprite = myLook.Body;
-        HatRenderer.sprite = myLook.Hat;
+        HatRenderer.sprite = workHat;
         SetMood(NPCMood.Neutral);
     }
 
@@ -56,7 +56,6 @@ public class NPCVisuals : MonoBehaviour
         myLook = new RandomNPCLooks();
         myLook.BaseHead = GameManager.GameSettings.Heads.GetRandomElementFromList();
         myLook.Body = GameManager.GameSettings.Bodies.GetRandomElementFromList();
-        myLook.Hat = GameManager.GameSettings.Hats.GetRandomElementFromList();
 
         myLook.NeutralLook = GameManager.GameSettings.NeutralSprites.GiveRandomSprites();
         myLook.AngryLook = GameManager.GameSettings.AngrySprites.GiveRandomSprites();
@@ -75,7 +74,6 @@ public class RandomNPCLooks
     public NPCVisualLook AngryLook;
     public Sprite BaseHead;
     public Sprite Body;
-    public Sprite Hat;
 }
 
 public class NPCVisualLook
