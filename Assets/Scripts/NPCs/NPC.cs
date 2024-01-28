@@ -89,7 +89,7 @@ public class NPC : MonoBehaviour
     {
         if (VisualScript != null)
         {
-            bool showNoHat = UnityEngine.Random.Range(0f, 1f) > 0.75f;
+            bool showNoHat = UnityEngine.Random.Range(0f, 1f) > 0.8f;
             VisualScript.SetupVisuals(showNoHat ? null : data.RelatedHat);
         }
     }
