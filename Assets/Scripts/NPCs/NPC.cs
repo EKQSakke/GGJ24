@@ -35,7 +35,7 @@ public class NPC : MonoBehaviour
 
         foreach (NPCDialogueData dialogue in allData)
         {
-            if (dialogue.name == data.ItemNeeded.ToString())
+            if (dialogue.name == "Drug")
                 dialogueData = dialogue;
         }
         nPCname = GameManager.Instance.CurrentGameSettings.Names.GetRandomElementFromList();
