@@ -25,5 +25,7 @@ public enum UsableItemType
     Coffee,
     YesStamp,
     NoStamp,
-    Break
+    Break,
+    Money,
+    GameDev
 }

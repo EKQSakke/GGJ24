@@ -36,10 +36,12 @@ public class UsableItemSpawner : MonoBehaviour
         List<UsableItemData> itemList = new List<UsableItemData>(possibleItems);
         itemList.Shuffle();
          
-        for (int i = 0; i < spawnPoints.Count && i < possibleItems.Count; i++)
+        for (int i = 0; i < spawnPoints.Count && i < itemList.Count; i++)
         {
             GameObject newSpawnedItem = Instantiate(itemList[i].Prefab, spawnPoints[i], false);
-            spawnedItems.Add(newSpawnedItem.GetComponent<Interactable>());
+            Interactable spawnedInteractable = newSpawnedItem.GetComponent<Interactable>();
+            spawnedInteractable.SetupInteractable(itemList[i]);
+            spawnedItems.Add(spawnedInteractable);
             possibleItems.Remove(itemList[i]);
         }
 

@@ -1310,9 +1310,10 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     ItemsToSpawn:
-    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
-    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
-    - {fileID: 11400000, guid: 4fcc26f0fe1c82d40aacc613bcf23ff7, type: 2}
+    - {fileID: 11400000, guid: bb2528742a0a20c4f83811ae8a7a9669, type: 2}
+    - {fileID: 11400000, guid: 5cef10b1d7edfa94487d0f0ada01261e, type: 2}
+    - {fileID: 11400000, guid: 6163454abf0cd1c4386f8caf35d0d4f2, type: 2}
+    - {fileID: 11400000, guid: 54ab2e1188c590444826b87bc11e7936, type: 2}
     DayRules: {fileID: 11400000, guid: 36ae4a4093c4fbe41b878856a587f304, type: 2}
   - TimeInSeconds: 120
     StressThreshold: 1
