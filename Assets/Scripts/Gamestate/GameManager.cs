@@ -172,7 +172,7 @@ public class GameManager : Singleton<GameManager>
 
         currentStressLevel = Mathf.Clamp01(currentStressLevel + changeBy);
 
-        if (currentStressLevel > currentRoundSettings.StressThreshold)
+        if (currentStressLevel >= currentRoundSettings.StressThreshold)
         {
             Debug.LogError("STRESSED OUT!");
             CutsceneManager.Instance.PlayCutscene("End_Loss");
