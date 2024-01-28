@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     internal bool GameCurrentlyActive = false;
     internal bool OnBreak = false;
     internal float Stress => currentStressLevel;
+    internal float RoundTimePercent => currentRoundTime / currentRoundSettings.TimeInSeconds;
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
 
@@ -43,6 +44,9 @@ public class GameManager : Singleton<GameManager>
     private float timeWithCurrentNpc = 0;
     [SerializeField]
     private float timeToFullNpcStressMultiplier = 10;
+
+    [SerializeField]
+    private float stressAddSpeedMultiplier = 1;
 
     // Start is called before the first frame update
     private void Awake()
@@ -151,6 +155,7 @@ public class GameManager : Singleton<GameManager>
             spawner.SetSpawnerInteractableState(false);
         }
 
+        DialogueDrawer.Instance.StopDialogue();
         RoundOver?.Invoke();
 
         Cursor.lockState = CursorLockMode.None;
@@ -239,6 +244,24 @@ public class GameManager : Singleton<GameManager>
         var npcData = NPC.CurrentNPCAtDesk.data;
         var evalPoint = timeWithCurrentNpc / timeToFullNpcStressMultiplier;
         return npcData.StressGenerationCurve.Evaluate(evalPoint);
+    }
+
+    public void ChangeStressOverTime(float stressToAdd)
+    {
+        StartCoroutine(ChangeStressSlowly(stressToAdd));
+    }
+
+    IEnumerator ChangeStressSlowly(float stressToAdd)
+    {
+        var stressAdded = 0f;
+        var totalStressToChange = Math.Abs(stressToAdd);
+        while (stressAdded <= totalStressToChange)
+        {
+            var stressDelta = stressToAdd * stressAddSpeedMultiplier * Time.deltaTime;
+            stressAdded += Mathf.Abs(stressDelta);
+            ChangeStressAmount(stressDelta);
+            yield return null;
+        }
     }
 }
 

@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Game Settings", menuName = "Custom Scriptables/Game Settings")]
 public class BasicGameSettings : ScriptableObject
 {
     [Header("NPC variation")]
+    public List<string> Names = new List<string>();
+    public List<Sprite> ClosedEyes;
     public NPCMoodSprites NeutralSprites;
     public NPCMoodSprites HappySprites;
     public NPCMoodSprites AngrySprites;
@@ -17,6 +21,15 @@ public class BasicGameSettings : ScriptableObject
 
     [Header("Sounds")]
     public List<AudioClip> CustomerVoiceClips;
+
+    private void OnValidate()
+    {
+        Names.Clear();
+
+        var stream = new StreamReader("Assets/Lista_nimilista_nimistä.txt");
+        while (!stream.EndOfStream)
+            Names.Add(stream.ReadLine());
+    }
 
 }
 

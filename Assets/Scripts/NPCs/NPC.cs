@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     public static event NPCAction onNPCItemUsed;
 
     public NPCData data;
+    private string nPCname; public string NPCname { get { return nPCname; } }
 
     private enum State
     {
@@ -34,10 +35,10 @@ public class NPC : MonoBehaviour
 
         foreach (NPCDialogueData dialogue in allData)
         {
-            if (dialogue.name == data.ItemNeeded.ToString())
+            if (dialogue.name == "Drug")
                 dialogueData = dialogue;
         }
-        
+        nPCname = GameManager.Instance.CurrentGameSettings.Names.GetRandomElementFromList();
         SetMood(NPCMood.Neutral);
     }
 
@@ -98,7 +99,7 @@ public class NPC : MonoBehaviour
     {
         state = State.Happy;
         SetMood(NPCMood.Happy);
-        GameManager.Instance.ChangeStressAmount(data.StressOnSuccess);
+        GameManager.Instance.ChangeStressOverTime(data.StressOnSuccess);
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("HappyGrunt", 1f);
@@ -108,7 +109,7 @@ public class NPC : MonoBehaviour
     {
         state = State.Mad;
         SetMood(NPCMood.Angry);
-        GameManager.Instance.ChangeStressAmount(data.StressOnFail);
+        GameManager.Instance.ChangeStressOverTime(data.StressOnFail);
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("AngryGrunt", 1f);
@@ -129,7 +130,7 @@ public class NPC : MonoBehaviour
 
     private IEnumerator ItemReactionRoutine(UsableItemData itemUsed)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.6f);
 
         if (ItemGivenToMe(itemUsed))
         {

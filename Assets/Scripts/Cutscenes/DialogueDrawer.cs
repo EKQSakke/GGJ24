@@ -31,13 +31,12 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
 
     public void ShowText(string input, NPC speaker)
     {
-        if (currentRoutine != null)
-        {
-            StopCoroutine(currentRoutine);
-        }
+        StopDialogue();
 
-        text.text = "";
-        speakerText.text = speaker.data.name;
+        if (speaker.NPCname != null)
+        {
+            speakerText.text = speaker.NPCname;
+        }
 
         AudioClip npcSound = null;
 
@@ -50,13 +49,24 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
     }
 
     public void ShowText(string input) {
-        speakerText.text = "";
+        StopDialogue();
+        currentRoutine = StartCoroutine(DrawText(input));
+    }
+
+    public void StopDialogue()
+    {
         if (currentRoutine != null)
         {
             StopCoroutine(currentRoutine);
         }
+
+        speakerText.text = "";
         text.text = "";
-        currentRoutine = StartCoroutine(DrawText(input));
+
+        if (speakingAudioSource != null)
+        {
+            speakingAudioSource.Stop();
+        }
     }
 
     IEnumerator DrawText(string textInput, AudioClip textAudio = null)
