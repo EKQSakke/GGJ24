@@ -35,7 +35,7 @@ public class NPC : MonoBehaviour
 
         foreach (NPCDialogueData dialogue in allData)
         {
-            if (dialogue.name == data.ItemNeeded.ToString())
+            if (dialogue.name == "Drug")
                 dialogueData = dialogue;
         }
         nPCname = GameManager.Instance.CurrentGameSettings.Names.GetRandomElementFromList();
@@ -130,7 +130,7 @@ public class NPC : MonoBehaviour
 
     private IEnumerator ItemReactionRoutine(UsableItemData itemUsed)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.6f);
 
         if (ItemGivenToMe(itemUsed))
         {

@@ -12,6 +12,8 @@ public class NPCDropArea : Interactable
     {
         base.InteractableUsedOnMe(interactable);
 
+        DialogueDrawer.Instance.StopDialogue();
+
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("GiveSound");
 
