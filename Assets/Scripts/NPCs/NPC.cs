@@ -52,13 +52,23 @@ public class NPC : MonoBehaviour
         if (item.ItemType == data.ItemNeeded)
         {
             GameManager.Instance.ChangeStressOverTime(data.StressOnSuccess);
-            GetHappy();
+
+            if (data.ItemNeeded == UsableItemType.NoStamp)
+                GetMad();
+            else
+                GetHappy();
+
             return true;
         }
         else
         {
             GameManager.Instance.ChangeStressOverTime(data.StressOnFail);
-            GetMad();
+
+            if (data.ItemNeeded == UsableItemType.NoStamp && item.ItemType == UsableItemType.YesStamp)
+                GetHappy();
+            else
+                GetMad();
+
             return false;
         }
     }
@@ -97,12 +107,6 @@ public class NPC : MonoBehaviour
 
     private void GetHappy()
     {
-        if (data.ItemNeeded == UsableItemType.NoStamp)
-        {
-            GetMad();
-            return;
-        }
-
         state = State.Happy;
         SetMood(NPCMood.Happy);        
 
