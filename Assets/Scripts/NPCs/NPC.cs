@@ -130,7 +130,7 @@ public class NPC : MonoBehaviour
 
     private IEnumerator ItemReactionRoutine(UsableItemData itemUsed)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.6f);
 
         if (ItemGivenToMe(itemUsed))
         {

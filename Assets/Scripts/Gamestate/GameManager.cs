@@ -155,6 +155,7 @@ public class GameManager : Singleton<GameManager>
             spawner.SetSpawnerInteractableState(false);
         }
 
+        DialogueDrawer.Instance.StopDialogue();
         RoundOver?.Invoke();
 
         Cursor.lockState = CursorLockMode.None;

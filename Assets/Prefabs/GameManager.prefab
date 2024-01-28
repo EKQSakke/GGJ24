@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetDontDestroy: 0
   GameRounds:
-  - TimeInSeconds: 30
+  - TimeInSeconds: 45
     StressThreshold: 1
     DefaultStressPerSecond: 0.01
     UseNPCDropArea: 0
@@ -1404,3 +1404,4 @@ MonoBehaviour:
   PaperDropArea: {fileID: 0}
   NPCDropArea: {fileID: 0}
   timeToFullNpcStressMultiplier: 10
+  stressAddSpeedMultiplier: 1

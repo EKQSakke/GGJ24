@@ -24,6 +24,8 @@ public class BasicGameSettings : ScriptableObject
 
     private void OnValidate()
     {
+        Names.Clear();
+
         var stream = new StreamReader("Assets/Lista_nimilista_nimistä.txt");
         while (!stream.EndOfStream)
             Names.Add(stream.ReadLine());
