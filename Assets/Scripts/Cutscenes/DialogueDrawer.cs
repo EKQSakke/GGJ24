@@ -37,7 +37,10 @@ public class DialogueDrawer : Singleton<DialogueDrawer>
         }
 
         text.text = "";
-        speakerText.text = speaker.data.name;
+        if (speaker.NPCname != null)
+        {
+            speakerText.text = speaker.NPCname;
+        }
 
         AudioClip npcSound = null;
 
