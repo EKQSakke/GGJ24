@@ -25,7 +25,6 @@ public class NPC : MonoBehaviour
     [SerializeField] private NPCVisuals VisualScript;
 
     //public int positionInQueue;
-    private float step = 2f;
 
     private NPCDialogueData dialogueData;
 
@@ -52,12 +51,13 @@ public class NPC : MonoBehaviour
     {
         if (item.ItemType == data.ItemNeeded)
         {
-            Debug.Log("GOT ME WHAT I WANT!!!");
+            GameManager.Instance.ChangeStressOverTime(data.StressOnSuccess);
             GetHappy();
             return true;
         }
         else
         {
+            GameManager.Instance.ChangeStressOverTime(data.StressOnFail);
             GetMad();
             return false;
         }
@@ -90,16 +90,21 @@ public class NPC : MonoBehaviour
     {
         if (VisualScript != null)
         {
-            bool showNoHat = UnityEngine.Random.Range(0f, 1f) > 0.8f;
+            bool showNoHat = UnityEngine.Random.Range(0f, 1f) > 0.85f;
             VisualScript.SetupVisuals(showNoHat ? null : data.RelatedHat);
         }
     }
 
     private void GetHappy()
     {
+        if (data.ItemNeeded == UsableItemType.NoStamp)
+        {
+            GetMad();
+            return;
+        }
+
         state = State.Happy;
-        SetMood(NPCMood.Happy);
-        GameManager.Instance.ChangeStressOverTime(data.StressOnSuccess);
+        SetMood(NPCMood.Happy);        
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("HappyGrunt", 1f);
@@ -108,16 +113,10 @@ public class NPC : MonoBehaviour
     private void GetMad()
     {
         state = State.Mad;
-        SetMood(NPCMood.Angry);
-        GameManager.Instance.ChangeStressOverTime(data.StressOnFail);
+        SetMood(NPCMood.Angry);        
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("AngryGrunt", 1f);
-    }
-
-    private void MoveForward()
-    {
-        transform.position += -transform.forward * step;
     }
 
     private void SetMood(NPCMood mood)
