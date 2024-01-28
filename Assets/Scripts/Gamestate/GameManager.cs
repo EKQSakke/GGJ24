@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        RoundStart = null;
         GameData.LoadDataFiles();
     }
 
