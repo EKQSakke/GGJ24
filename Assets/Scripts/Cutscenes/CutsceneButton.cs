@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using System;
+using UnityEngine.Events;
 
 public class CutsceneButton : MonoBehaviour
 {
     private Button button;
+    private UnityAction loadStartScene;
 
     private void Start()
     {
