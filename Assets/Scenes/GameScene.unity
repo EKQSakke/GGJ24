@@ -532,6 +532,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1146117709236751073, guid: 51f6d9e279a49774a9726f355aae16cc, type: 3}
+      propertyPath: GameRounds.Array.data[0].ItemsToSpawn.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1146117709236751073, guid: 51f6d9e279a49774a9726f355aae16cc, type: 3}
       propertyPath: GameRounds.Array.data[0].UsedSpawnersForRound.Array.data[0]
       value: 
       objectReference: {fileID: 1482415493}
