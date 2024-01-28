@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoffeeInteractable : Interactable
 {
     [SerializeField] GameObject interactionParticlePrefab;
+    [SerializeField] private ParticleSystem coffeeLeftParticles;
 
     public float StressRelieved = 0.25f;
     public int CoffeeAmount = 3;
@@ -29,6 +30,9 @@ public class CoffeeInteractable : Interactable
             GameObject interactionParticle = Instantiate(interactionParticlePrefab, transform.position, Quaternion.identity);
             Destroy(interactionParticle, 2f);
         }
+
+        if (CoffeeAmount <= 0)
+            coffeeLeftParticles.Stop();
     }
 
     public void Refill(int amount = 3)
