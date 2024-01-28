@@ -9,7 +9,6 @@ public class CutsceneManager : Singleton<CutsceneManager>
         "Cutscene_Test2",
     };
 
-
     string cutsceneName;
 
     private void Awake()
@@ -45,14 +44,17 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         StartCoroutine(EndCutscene());
     }
-    
+
     IEnumerator EndCutscene()
     {
         var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
         yield return new WaitForSeconds(crossFadeDuration);
-        if (cutsceneName != "") {
+        if (cutsceneName != "")
+        {
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName));
-        } else {
+        }
+        else
+        {
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
         }
 
@@ -60,6 +62,5 @@ public class CutsceneManager : Singleton<CutsceneManager>
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
-
 }
 
