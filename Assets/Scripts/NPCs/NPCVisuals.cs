@@ -15,6 +15,37 @@ public class NPCVisuals : MonoBehaviour
     private RandomNPCLooks myLook;
     private Vector3? defaultScale;
 
+    private NPCMood currentMood = NPCMood.Neutral;
+    private float timeToBlink;
+    private float timeSinceLastBlink = 0f;
+    private bool blinking = false;
+
+    private void Update()
+    {
+        if (myLook != null)
+        {
+            timeSinceLastBlink += Time.deltaTime;
+
+            if (timeSinceLastBlink >= timeToBlink)
+            {
+                timeSinceLastBlink = 0f;
+
+                if (blinking)
+                {
+                    timeToBlink = Random.Range(6f, 30f);
+                }
+                else
+                {
+                    timeToBlink = Random.Range(0.1f, 0.3f);
+                    //timeToBlink = Random.Range(1f, 2f);
+                }
+
+                blinking = !blinking;
+                UpdateEyes();
+            }            
+        }
+    }
+
     public void SetupVisuals(Sprite workHat = null)
     {
         if (defaultScale == null)
@@ -27,10 +58,16 @@ public class NPCVisuals : MonoBehaviour
         BodyRenderer.sprite = myLook.Body;
         HatRenderer.sprite = workHat;
         SetMood(NPCMood.Neutral);
+
+        timeSinceLastBlink = 0f;
+        timeToBlink = Random.Range(6f, 30f);
+        blinking = false;
     }
 
     public void SetMood(NPCMood mood)
     {
+        currentMood = mood;
+
         switch (mood) 
         {
             case NPCMood.Happy:
@@ -56,6 +93,7 @@ public class NPCVisuals : MonoBehaviour
         myLook = new RandomNPCLooks();
         myLook.BaseHead = GameManager.GameSettings.Heads.GetRandomElementFromList();
         myLook.Body = GameManager.GameSettings.Bodies.GetRandomElementFromList();
+        myLook.ClosedEyes = GameManager.GameSettings.ClosedEyes.GetRandomElementFromList();
 
         myLook.NeutralLook = GameManager.GameSettings.NeutralSprites.GiveRandomSprites();
         myLook.AngryLook = GameManager.GameSettings.AngrySprites.GiveRandomSprites();
@@ -63,6 +101,28 @@ public class NPCVisuals : MonoBehaviour
 
         float randomScaler = Random.Range(-GameManager.GameSettings.NPCScaleVariance, GameManager.GameSettings.NPCScaleVariance);
         transform.localScale = (Vector3)defaultScale + new Vector3(randomScaler, randomScaler, randomScaler);
+    }
+
+    private void UpdateEyes()
+    {
+        if (blinking)
+        {
+            EyesRenderer.sprite = myLook.ClosedEyes;
+            return;
+        }
+
+        switch (currentMood)
+        {
+            case NPCMood.Happy:
+                EyesRenderer.sprite = myLook.HappyLook.Eyes;
+                break;
+            case NPCMood.Angry:
+                EyesRenderer.sprite = myLook.AngryLook.Eyes;
+                break;
+            default:
+                EyesRenderer.sprite = myLook.NeutralLook.Eyes;
+                break;
+        }
     }
 
 }
@@ -74,6 +134,7 @@ public class RandomNPCLooks
     public NPCVisualLook AngryLook;
     public Sprite BaseHead;
     public Sprite Body;
+    public Sprite ClosedEyes;
 }
 
 public class NPCVisualLook
