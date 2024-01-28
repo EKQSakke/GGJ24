@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     public static event NPCAction onNPCItemUsed;
 
     public NPCData data;
+    private string nPCname; public string NPCname { get { return nPCname; } }
 
     private enum State
     {
@@ -37,7 +38,7 @@ public class NPC : MonoBehaviour
             if (dialogue.name == data.ItemNeeded.ToString())
                 dialogueData = dialogue;
         }
-        
+        nPCname = GameManager.Instance.CurrentGameSettings.Names.GetRandomElementFromList();
         SetMood(NPCMood.Neutral);
     }
 

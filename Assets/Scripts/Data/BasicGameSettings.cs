@@ -7,6 +7,7 @@ using UnityEngine;
 public class BasicGameSettings : ScriptableObject
 {
     [Header("NPC variation")]
+    public List<string> Names = new List<string>();
     public NPCMoodSprites NeutralSprites;
     public NPCMoodSprites HappySprites;
     public NPCMoodSprites AngrySprites;
