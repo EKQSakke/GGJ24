@@ -24,7 +24,10 @@ public class CutsceneButton : MonoBehaviour
             if (sceneName == "DayComplete")
                 button.onClick.AddListener(GameManager.Instance.StartNewRound);
             if (sceneName == "End_Loss" || sceneName == "End_Win")
-                SceneManager.LoadScene("StartScene");
+            {
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => SceneManager.LoadScene("StartScene"));
+            }
         }        
     }
 }
