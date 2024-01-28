@@ -22,7 +22,7 @@ public class CoffeeInteractable : Interactable
 
         base.InteractEnd(interactor);
 
-        GameManager.Instance?.ChangeStressAmount(-StressRelieved);
+        GameManager.Instance?.ChangeStressOverTime(-StressRelieved);
 
         if (interactionParticlePrefab != null)
         {

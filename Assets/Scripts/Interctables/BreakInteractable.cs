@@ -7,7 +7,7 @@ public class BreakInteractable : Interactable
 
     public override void InteractEnd(Interactor interactor)
     {
-        GameManager.Instance?.ChangeStressAmount(-StressRelieved);
+        GameManager.Instance?.ChangeStressOverTime(-StressRelieved);
         FindAnyObjectByType<CoffeeInteractable>().Refill();
         CutsceneManager.Instance.PlayCutscene(0);
         HoverEnd(interactor);
