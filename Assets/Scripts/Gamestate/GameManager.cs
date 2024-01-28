@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     internal bool GameCurrentlyActive = false;
     internal bool OnBreak = false;
     internal float Stress => currentStressLevel;
+    internal float RoundTimePercent => currentRoundTime / currentRoundSettings.TimeInSeconds;
 
     private GameRoundSettings currentRoundSettings => GameRounds[currentGameRound];
 
