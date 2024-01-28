@@ -10,7 +10,7 @@ public class DailyInstructions : MonoBehaviour
     void Start()
     {
         text = GetComponentInChildren<TMP_Text>(true);
-        GameManager.RoundStart = delegate () { UpdateText(); };
+        GameManager.RoundStart += delegate () { UpdateText(); };
     }
 
     void UpdateText()
