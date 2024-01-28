@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene/Cutscene_Test3.unity
     guid: 6e69a45e612529443a2c2345ebc8ee79
   - enabled: 1
+    path: Assets/Scenes/DayComplete.unity
+    guid: c651f0dd39e6fc440b7212ea27219ee6
+  - enabled: 1
     path: Assets/Scenes/End_Loss.unity
     guid: ca702837ec09faa4c8eb9b84ccf6157c
   - enabled: 1

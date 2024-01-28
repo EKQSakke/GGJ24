@@ -37,6 +37,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
         var crossFadeDuration = BlackFader.Instance.CrossFadeScenes();
         yield return new WaitForSeconds(crossFadeDuration);
         SceneManager.LoadScene(cutsceneName, LoadSceneMode.Additive);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ReturnToGame()
@@ -50,6 +52,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
         yield return new WaitForSeconds(crossFadeDuration);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(cutsceneName));
         GameManager.Instance.OnBreak = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
 }

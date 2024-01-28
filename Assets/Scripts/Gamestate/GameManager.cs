@@ -151,7 +151,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameCurrentlyActive = false;
-            SetDayOverUI(true);
+            CutsceneManager.Instance.PlayCutscene("DayComplete");
         }
     }
 
