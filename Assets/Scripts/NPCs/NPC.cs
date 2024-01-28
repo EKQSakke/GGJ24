@@ -98,7 +98,7 @@ public class NPC : MonoBehaviour
     {
         state = State.Happy;
         SetMood(NPCMood.Happy);
-        GameManager.Instance.ChangeStressAmount(data.StressOnSuccess);
+        GameManager.Instance.ChangeStressOverTime(data.StressOnSuccess);
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("HappyGrunt", 1f);
@@ -108,7 +108,7 @@ public class NPC : MonoBehaviour
     {
         state = State.Mad;
         SetMood(NPCMood.Angry);
-        GameManager.Instance.ChangeStressAmount(data.StressOnFail);
+        GameManager.Instance.ChangeStressOverTime(data.StressOnFail);
 
         if (SoundEffectManager.instance != null)
             SoundEffectManager.instance.PlaySoundEffectBank("AngryGrunt", 1f);
