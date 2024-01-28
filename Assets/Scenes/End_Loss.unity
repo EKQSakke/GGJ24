@@ -491,8 +491,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9e6812211eec91341ae16e2bab00aae0, type: 2}
+  m_sharedMaterial: {fileID: -916000976077523050, guid: 9e6812211eec91341ae16e2bab00aae0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -626,8 +626,8 @@ MonoBehaviour:
   m_text: "You lost your cool in a stressful situation... \n\nNow you need to go
     to the <b>back</b> of the line!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9e6812211eec91341ae16e2bab00aae0, type: 2}
+  m_sharedMaterial: {fileID: -916000976077523050, guid: 9e6812211eec91341ae16e2bab00aae0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
