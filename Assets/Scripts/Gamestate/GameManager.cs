@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
@@ -69,9 +70,13 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            SceneManager.LoadScene(0);
+        }
+
         if (GameCurrentlyActive == false)
-            return;
-              
+            return;              
 
         currentRoundTime += Time.deltaTime;
 
