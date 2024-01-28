@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     public BasicGameSettings CurrentGameSettings;
 
     [Header("References")]
+    public Player player;
     public NPCSpawner QueSpawner;
     public NPCMover QueMover;
     public List<UsableItemSpawner> ItemSpawners;
@@ -149,13 +150,15 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Ending game round: " + currentGameRound);
 
+        player?.Interactor.StopInteraction();
+
         if (currentGameRound == GameRounds.Count - 1)
         {
             CutsceneManager.Instance.PlayCutscene("End_Win");
             return;
         }
 
-        currentGameRound++;
+        currentGameRound++;        
 
         foreach (UsableItemSpawner spawner in currentRoundSettings.UsedSpawnersForRound)
         {

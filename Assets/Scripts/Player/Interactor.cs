@@ -113,8 +113,13 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    private void StopInteraction()
+    public void StopInteraction()
     {
+        interacting = false;
+
+        if (interactable == null)
+            return;
+
         if (interactable.InteractionType == InteractionMode.Drag)
         {
             Interactable hoverTarget = ScanForInteractable();
@@ -124,8 +129,7 @@ public class Interactor : MonoBehaviour
                 hoverTarget.InteractableUsedOnMe(interactable);
             }
         }
-
-        interacting = false;
+                
         interactable.InteractEnd(this);
         interactable = null;
 
