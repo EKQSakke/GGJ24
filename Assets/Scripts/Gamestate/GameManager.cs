@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     public Slider StressLevel;
     public TextMeshProUGUI DayTitleText;
     public GameObject DayOverUI;
+    public GameObject BadPaperDropArea;
     public GameObject PaperDropArea;
     public GameObject NPCDropArea;
 
@@ -56,6 +57,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        NPC.NewNPCAtDesk += NewPeepoArrive;
+        NPC.onNPCItemUsed += PeepoLeaving;
         StartNewGame();
     }
 
@@ -64,10 +67,15 @@ public class GameManager : Singleton<GameManager>
     {
         if (GameCurrentlyActive == false)
             return;
+              
 
         currentRoundTime += Time.deltaTime;
 
-        if (currentRoundTime >= currentRoundSettings.TimeInSeconds && !OnBreak)
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            EndCurrentRound();
+        }
+        else if (currentRoundTime >= currentRoundSettings.TimeInSeconds && !OnBreak)
         {
             EndCurrentRound();
         }
@@ -75,6 +83,11 @@ public class GameManager : Singleton<GameManager>
         {
             UpdateGameState();
         }
+    }
+
+    private void OnDestroy()
+    {
+        NPC.NewNPCAtDesk -= NewPeepoArrive;
     }
 
     #region Round handling
@@ -110,15 +123,14 @@ public class GameManager : Singleton<GameManager>
             spawner.CreateItems(items);
         }
 
-        QueSpawner.SpawnNPCs(QueMover.AmountOfQueuePoints);
-
-        PaperDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea == false);
-        NPCDropArea.gameObject.SetActive(currentRoundSettings.UseNPCDropArea);
+        QueSpawner.SpawnNPCs(QueMover.AmountOfQueuePoints, currentRoundSettings.NPCsToSpawn);        
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         GameCurrentlyActive = true;
+
+        NewPeepoArrive();
         RoundStart?.Invoke();
     }
 
@@ -187,13 +199,43 @@ public class GameManager : Singleton<GameManager>
         DayOverUI.SetActive(setTo);
     }
 
-    public void ResetNpcTimer()
+    private void NewPeepoArrive()
     {
         timeWithCurrentNpc = 0;
+
+        TurnOffAllTwitchDrops();
+
+        if (NPC.CurrentNPCAtDesk.data.ItemNeeded == UsableItemType.YesStamp)
+        {
+            PaperDropArea.gameObject.SetActive(true);
+        }
+        else if (NPC.CurrentNPCAtDesk.data.ItemNeeded == UsableItemType.NoStamp)
+        {
+            BadPaperDropArea.gameObject.SetActive(true);
+        }
+        else
+        {
+            NPCDropArea.gameObject.SetActive(true);
+        }
+    }
+
+    private void PeepoLeaving(NPC npc)
+    {
+        TurnOffAllTwitchDrops();
+    }
+
+    private void TurnOffAllTwitchDrops()
+    {
+        PaperDropArea.gameObject.SetActive(false);
+        BadPaperDropArea.gameObject.SetActive(false);
+        NPCDropArea.gameObject.SetActive(false);
     }
 
     float GetNpcStressMultiplier()
     {
+        if (NPC.CurrentNPCAtDesk == null)
+            return 0;
+
         var npcData = NPC.CurrentNPCAtDesk.data;
         var evalPoint = timeWithCurrentNpc / timeToFullNpcStressMultiplier;
         return npcData.StressGenerationCurve.Evaluate(evalPoint);
@@ -211,5 +253,6 @@ public class GameRoundSettings
     public bool UseNPCDropArea = true;
     public List<UsableItemSpawner> UsedSpawnersForRound;
     public List<UsableItemData> ItemsToSpawn;
+    public List<NPCData> NPCsToSpawn;
     public DayRules DayRules;
 }

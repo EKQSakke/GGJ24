@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Active: 1
   Prefab: {fileID: 4602110592173857624, guid: 05f0acd887e790945a418c830b556780, type: 3}
-  ItemType: 1
+  ItemType: 8
   InteractionMode: 2

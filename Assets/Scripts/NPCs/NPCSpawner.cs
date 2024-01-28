@@ -21,9 +21,11 @@ public class NPCSpawner : MonoBehaviour
             SpawnNPCs(mover.AmountOfQueuePoints);
     }
 
-    public void SpawnNPCs(int amount)
+    public void SpawnNPCs(int amount, List<NPCData> allowedNPCs = null)
     {
-        if (NPCDatas.IsEmpty())
+        if (allowedNPCs != null)
+            NPCDatas = allowedNPCs;
+        else if (NPCDatas.IsEmpty())
             NPCDatas = GameData.GetAll<NPCData>();
 
         ClearQueue();
@@ -32,9 +34,9 @@ public class NPCSpawner : MonoBehaviour
         {
             NPCData data = NPCDatas.GetRandomElementFromList();
             NPC nPC = Instantiate(data.NPCPrefab).GetComponent<NPC>();
-            nPC.CreateRandomVisuals();
-            NPCs.Add(nPC);
             nPC.data = data;
+            nPC.CreateRandomVisuals();
+            NPCs.Add(nPC);            
 
             if (positionInQueue == amount - 1)
                 nPC.AtDesk();
