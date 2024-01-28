@@ -98,6 +98,7 @@ public class GameManager : Singleton<GameManager>
     private void OnDestroy()
     {
         NPC.NewNPCAtDesk -= NewPeepoArrive;
+        NPC.onNPCItemUsed -= PeepoLeaving;
     }
 
     #region Round handling
